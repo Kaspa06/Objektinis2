@@ -31,6 +31,8 @@
 | Time taken to sort data       | 0.00670575s   | 0.0587848s     | 0.616905s       | 6.67419s         | 59.6123s          |
 | Time taken to divide students | 0.000968202s  | 0.00842794s    | 0.09097s        | 0.964875s        | 10.6465s          |
 
+-
+
 ### Strategy 2
 
 ##### Vector
@@ -83,6 +85,18 @@
 | Time taken to sort data       | 0.007978s     | 0.187784s      | 0.72893s        | 7.6598s          | 78.6523s          |
 | Time taken to divide students | 0.000998s     | 0.009481s      | 0.100241s       | 1.0698s          | 10.5069s          |
 
+**Comments:**
+
+List strategy outperforms both Vector and Deque in terms of time taken to read data for all student sizes. However, when it comes to sorting data and dividing students, the Vector strategy seems to perform better compared to List and Deque, especially as the number of students increases.
+
+The decision on which strategy is better depends on the specific requirements and constraints of the application. For instance:
+
+- **Vector**: Efficient for tasks that require frequent access to elements and relatively fewer insertions and deletions.
+- **List**: Suitable for scenarios where frequent insertions and deletions are required, as it offers constant-time insertion and deletion operations.
+- **Deque**: A compromise between Vector and List, offering efficient random access to elements and constant-time insertion and deletion at both ends.
+
+Consider the specific operations and performance requirements of your application to determine the most appropriate container strategy.
+
 # Running a Makefile for C/C++ Projects
 
 This guide will walk you through the process of running a Makefile for compiling and executing C/C++ programs on both macOS and Windows. If this tutorial does not work for you, try these solutions [Makefile](https://stackoverflow.com/questions/32127524/how-to-install-and-use-make-in-windows).
@@ -101,8 +115,6 @@ This guide will walk you through the process of running a Makefile for compiling
 - **Text Editor or IDE:**
 
   - Use a text editor or IDE to write your C/C++ code and Makefile. Popular choices include Visual Studio Code, Sublime Text, Atom, etc.
-
-  Steps to Run Makefile
 
 ---
 
