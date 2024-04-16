@@ -82,3 +82,55 @@
 | Time taken to read data       | 0.013962s     | 0.129581s      | 1.28972s        | 12.8755s         | 138.635s          |
 | Time taken to sort data       | 0.007978s     | 0.187784s      | 0.72893s        | 7.6598s          | 78.6523s          |
 | Time taken to divide students | 0.000998s     | 0.009481s      | 0.100241s       | 1.0698s          | 10.5069s          |
+
+# Running a Makefile for C/C++ Projects
+
+This guide will walk you through the process of running a Makefile for compiling and executing C/C++ programs on both macOS and Windows.
+
+## Prerequisites
+
+1.  **Make Installation:**
+
+    - macOS: Make is usually pre-installed. You can verify by opening a terminal and typing `make -v`.
+    - Windows: Install Make using a package manager like [Chocolatey](https://chocolatey.org/). Run `choco install make` in PowerShell or Command Prompt.
+
+- **C/C++ Compiler:**
+
+  - Ensure you have a C/C++ compiler installed. On macOS, Clang is typically pre-installed. On Windows, you can use MinGW or Cygwin.
+
+- **Text Editor or IDE:**
+
+  - Use a text editor or IDE to write your C/C++ code and Makefile. Popular choices include Visual Studio Code, Sublime Text, Atom, etc.
+
+  Steps to Run Makefile
+
+---
+
+### 1\. Write Your Code
+
+- Create your C/C++ code in one or more `.cpp` or `.c` files.
+
+### 2\. Write Makefile
+
+- Create a file named `Makefile` (without extension) in the same directory as your source code.
+- Open `Makefile` in a text editor and define build rules.
+
+### 3\. Open Terminal/Command Prompt
+
+- macOS: Open Terminal.
+- Windows: Open Command Prompt or PowerShell.
+
+### 4\. Navigate to Project Directory
+
+- Use `cd` command to navigate to the directory containing your code and Makefile.
+
+### 5\. Run Make
+
+- Type `make` and press Enter. This executes the default target (`all`) in the Makefile.
+
+### 6\. Run Your Program
+
+- After successful build, an executable file (e.g., `programa` on macOS or `programa.exe` on Windows) will be generated in the same directory.
+- Run the program by typing `./programa` on macOS or `programa.exe` on Windows, and press Enter.
+
+Congratulations! You've successfully compiled and executed your C/C++ program using a Makefile. If you encounter any errors during compilation, check your Makefile and source code for issues.
