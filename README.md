@@ -85,7 +85,7 @@
 
 # Running a Makefile for C/C++ Projects
 
-This guide will walk you through the process of running a Makefile for compiling and executing C/C++ programs on both macOS and Windows.
+This guide will walk you through the process of running a Makefile for compiling and executing C/C++ programs on both macOS and Windows. If this tutorial does not work for you, try these solutions [Makefile](https://stackoverflow.com/questions/32127524/how-to-install-and-use-make-in-windows).
 
 ## Prerequisites
 
@@ -130,7 +130,7 @@ This guide will walk you through the process of running a Makefile for compiling
 
 ### 6\. Run Your Program
 
-- After successful build, an executable file (e.g., `programa` on macOS or `programa.exe` on Windows) will be generated in the same directory.
-- Run the program by typing `./programa` on macOS or `programa.exe` on Windows, and press Enter.
+- After successful build, an executable file (e.g., `run` on macOS or `run.exe` on Windows) will be generated in the same directory.
+- Run the program by typing `./run` on macOS or `run.exe` on Windows, and press Enter.
 
 Congratulations! You've successfully compiled and executed your C/C++ program using a Makefile. If you encounter any errors during compilation, check your Makefile and source code for issues.
