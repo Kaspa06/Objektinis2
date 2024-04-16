@@ -4,8 +4,10 @@
 #include "studentas.h"
 #include <list>
 
-void rusiuotiList1(const std::list<int>& sizes);
-void rusiuotiList2(const std::list<int>& sizes);
-void rusiuotiList3(const std::list<int>& sizes);
+void readDataList(std::list<Studentas>& studentai, const std::string& failoVardas);
+void generateStudentFilesList(int size);
+void rusiuotiStudentusList(const std::string& failoVardas);
+void rusiuotiStudentusList2(const std::string &failoVardas);
+void rusiuotiStudentusList3(const std::string &failoVardas);
 
-#endif
+#endif // FUNKCIJOSLIST_H
