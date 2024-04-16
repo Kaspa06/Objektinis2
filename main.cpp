@@ -1,391 +1,182 @@
-#include "studentas.h"
-#include "funkcijos.h"
+#include "containers.h"
 #include "funkcijosDeque.h"
+#include "funkcijosVector.h"
 #include "funkcijosList.h"
+#include "funkcijos.h"
+#include "studentas.h"
 #include <iostream>
+#include <vector>
+#include <limits>
+#include <deque>
+#include <list>
+#include <string>
+#include <chrono>
+#include <algorithm>
+#include <fstream>
+#include <sstream>
+#include <iomanip>
+#include <random>
+#include <dirent.h>
 #include <cstdlib>
 #include <ctime>
 #include <limits>
 #include <stdexcept>
-#include <chrono>
-#include <fstream>
 
 using namespace std;
-using namespace chrono;
 
-int main() {
-    srand(static_cast<unsigned int>(time(nullptr)));
-    vector<Studentas> studentai;
-    int pasirinkimas = 0, konteineris = 0, strategija = 0;
-
-    double visoLaikoSuma = 0.0;
-    int testuSkaicius = 0;
-
-    vector<double> testuLaikai;
-    vector<int> sizes = {1000, 10000, 100000, 1000000, 10000000};
-    vector<Studentas> kietiakiai, vargsiukai;
-
-    while (pasirinkimas != 8) {
-        auto startOperation = chrono::high_resolution_clock::now();
-
-        cout << "\nMenu:\n";
-        cout << "1. Ivesti viska rankomis\n";
-        cout << "2. Generuoti pazymius\n";
-        cout << "3. Generuoti ir pazymius ir studentu vardus, pavardes\n";
-        cout << "4. Gauti studentu vardus, pavardes, pazymius is failo.\n";
-        cout << "5. Generuoti studentu failus.\n";
-        cout << "6. Rusiuoti studentus sugeneruotuose failuose.\n";
-        cout << "7. Rusiuoti studentus pasirenkant konteineri.\n";
-        cout << "8. Baigti darba\n";
-        cout << "Rinktis (1-8): ";
-
-        cin >> pasirinkimas;
-        if (!cin.good()) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Neteisinga ivestis. Iveskite skaiciu." << endl;
-            continue;
+vector<string> listFilesInDirectory() {
+    vector<string> files;
+    DIR *dir;
+    struct dirent *ent;
+    if ((dir = opendir(".")) != NULL) {
+        while ((ent = readdir(dir)) != NULL) {
+            string filename = ent->d_name;
+            if (filename != "." && filename != "..") {
+                files.push_back(filename);
+            }
         }
+        closedir(dir);
+    } else {
+        cerr << "Could not open the directory." << endl;
+    }
+    return files;
+}
 
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+int main()
+{
+    srand(static_cast<unsigned int>(time(nullptr)));
 
-        switch (pasirinkimas) {
+    std::vector<Studentas> studentai;
+    int pasirinkimas;
+    int rusiavimoTipas;
+    std::vector<int> sizes = {1000, 10000, 100000, 1000000, 10000000};
+    std::vector<Studentas> kietiakiai, vargsiukai;
+
+    do
+    {
+        try
+        {
+            std::cout << "Meniu:" << std::endl
+                      << "1 - ivesti studentu duomenis rankiniu budu" << std::endl
+                      << "2 - Generuoti pazymius esamiems studentams" << std::endl
+                      << "3 - Generuoti naujus studentus su atsitiktiniais pazymiais" << std::endl
+                      << "4 - Skaityti duomenis is failo" << std::endl
+                      << "5 - Pakeisti rusiavimo tipa" << std::endl
+                      << "6 - Rusiuoti studentus sugeneruotuose failuose" << std::endl
+                      << "0 - Baigti darba" << std::endl
+                      << "Pasirinkite veiksma: ";
+            std::cin >> pasirinkimas;
+            if (!std::cin)
+            {
+                throw std::invalid_argument("Netinkamas pasirinkimas.");
+            }
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            switch (pasirinkimas)
+            {
             case 1:
-                try {
+                try
+                {
                     manualInput(studentai);
-                    PrintData(studentai, "rezultatai.txt");
-                } catch (const std::exception &e) {
-                    std::cerr << "Ivedimo klaida: " << e.what() << '\n';
+                    spausdintiGalutiniusBalus(studentai, "isvedimas.txt");
+                }
+                catch (const std::exception &e)
+                {
+                    std::cerr << "ivedimo klaida: " << e.what() << '\n';
                 }
                 break;
             case 2:
-                try {
+                try
+                {
                     generateGradesOnly(studentai);
-                } catch (const std::exception &e) {
+                }
+                catch (const std::exception &e)
+                {
                     std::cerr << "Pazymiu generavimo klaida: " << e.what() << '\n';
                 }
                 break;
             case 3:
-                int laik;
-                cout << "Iveskite kieki, kiek norite sugeneruoti studentu:";
-                cin >> laik;
-                if (!cin.good()) {
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                    cout << "Neteisinga ivestis. Iveskite skaiciu." << endl;
-                    continue;
-                }
-
-                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the buffer
-                try {
-                    for (int i = 0; i < laik; ++i) {
+                try
+                {
+                    for (int i = 0; i < 5; ++i)
+                    {
                         Studentas naujasStudentas;
                         generateRandomNamesAndGrades(naujasStudentas);
                         studentai.push_back(naujasStudentas);
-                        PrintData(studentai, "rezultatai.txt", 1);
                     }
-                } catch (const std::exception &e) {
+                    spausdintiGalutiniusBalus(studentai, "isvedimas.txt");
+                }
+                catch (const std::exception &e)
+                {
                     std::cerr << "Studentu generavimo klaida: " << e.what() << '\n';
                 }
                 break;
-            case 4: {
-                try {
-                    readFileDataFromFile(studentai, pasirinktiFaila());
-                    int choice = pasirinktiRusiavimoTipa();
-                    PrintData(studentai, "rezultatai.txt", choice);
-                } catch (const std::exception &e) {
-                    std::cerr << e.what() << '\n';
-                }
-                break;
-            }
-            case 5: {
-                std::cout << "Pasirinkite, kuri studentu faila norite sugeneruoti:" << std::endl;
-                for (size_t i = 0; i < sizes.size(); ++i) {
-                    std::cout << i + 1 << " - studentai" << sizes[i] << ".txt" << std::endl;
-                }
-                std::cout << "Pasirinkimas: ";
-                size_t choice;
-                std::cin >> choice;
-                auto startFileGeneration = std::chrono::high_resolution_clock::now();
-                generateStudentFiles(std::vector<int>{sizes[choice - 1]});
-                auto endFileGeneration = std::chrono::high_resolution_clock::now();
-                std::chrono::duration<double> elapsedFileGeneration = endFileGeneration - startFileGeneration;
-                std::cout << choice << "Failo generavimas uztruko: " << elapsedFileGeneration.count() << " sekundziu." << std::endl;
-                break;
-            }
-            case 6: {
-                std::cout << "Pasirinkite, kuri studentu faila norite rusiuoti:" << std::endl;
-                for (size_t i = 0; i < sizes.size(); ++i) {
-                    std::cout << i + 1 << " - studentai" << sizes[i] << ".txt" << std::endl;
-                }
-                std::cout << "Pasirinkimas: ";
-                size_t choice;
-                std::cin >> choice;
-
-                if (std::cin.fail() || choice < 1 || choice > sizes.size()) {
-                    std::cerr << "Neteisingas pasirinkimas." << std::endl;
-                    std::cin.clear();
-                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+             case 4: {
+                    // List files in the directory
+                    vector<string> files = listFilesInDirectory();
+                    // Display available files
+                    cout << "Pasirinkite faila:" << endl;
+                    for (size_t i = 0; i < files.size(); ++i) {
+                        cout << i + 1 << " - " << files[i] << endl;
+                    }
+                    // Get user choice
+                    int failoPasirinkimas;
+                    cout << "Pasirinkimas: ";
+                    cin >> failoPasirinkimas;
+                    if (cin.fail() || failoPasirinkimas < 1 || failoPasirinkimas > static_cast<int>(files.size())) {
+                        throw invalid_argument("Netinkamas failo pasirinkimas.");
+                    }
+                    // Use the selected file
+                    string selectedFile = files[failoPasirinkimas - 1];
+                    cout << "Pasirinktas failas: " << selectedFile << endl;
                     break;
                 }
-
-                auto startSorting = std::chrono::high_resolution_clock::now();
-                rusiuotiStudentus(std::vector<int>{sizes[choice - 1]});
-                auto endSorting = std::chrono::high_resolution_clock::now();
-                std::chrono::duration<double> elapsedSorting = endSorting - startSorting;
-                std::cout << "Rusiavimas ir issaugojimas uztruko: " << elapsedSorting.count() << " sekundziu." << std::endl;
-
-                break;
-            }
-            case 7: {
-                std::cout << "Pasirinkite, kuri konteineri norite testuoti:" << std::endl;
-                std::cout << "1. Vector" << std::endl;
-                std::cout << "2. List" << std::endl;
-                std::cout << "3. Deque" << std::endl;
-                cin >> konteineris;
-                std::cout << "Pasirinkite, kuria strategija norite testuoti:" << std::endl;
-                std::cout << "1. Du tokio pacio tipo konteineriai" << std::endl;
-                std::cout << "2. Vienas konteineris" << std::endl;
-                std::cout << "3. Strategija su efektyviais darbo metodais" << std::endl;
-                cin >> strategija;
-
-                switch (konteineris) {
-                    case 1: {
-                        std::cout << "Pradedamas darbas su Vector tipo konteineriais" << endl;
-                        if (strategija == 1) {
-                            std::cout << "Pasirinkite, kuri studentu faila norite rusiuoti:" << std::endl;
-                            for (size_t i = 0; i < sizes.size(); ++i) {
-                                std::cout << i + 1 << " - studentai" << sizes[i] << ".txt" << std::endl;
-                            }
-                            std::cout << "Pasirinkimas: ";
-                            size_t choice;
-                            std::cin >> choice;
-
-                            if (std::cin.fail() || choice < 1 || choice > sizes.size()) {
-                                std::cerr << "Neteisingas pasirinkimas." << std::endl;
-                                std::cin.clear();
-                                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                                break;
-                            }
-
-                            auto startSorting = std::chrono::high_resolution_clock::now();
-                            rusiuotiStudentus(std::vector<int>{sizes[choice - 1]});
-                            auto endSorting = std::chrono::high_resolution_clock::now();
-                            std::chrono::duration<double> elapsedSorting = endSorting - startSorting;
-                            std::cout << "Rusiavimas ir issaugojimas uztruko: " << elapsedSorting.count() << " sekundziu." << std::endl;
-                        } else if (strategija == 2) {
-                            std::cout << "Pasirinkite, kuri studentu faila norite rusiuoti:" << std::endl;
-                            for (size_t i = 0; i < sizes.size(); ++i) {
-                                std::cout << i + 1 << " - studentai" << sizes[i] << ".txt" << std::endl;
-                            }
-                            std::cout << "Pasirinkimas: ";
-                            size_t choice;
-                            std::cin >> choice;
-
-                            if (std::cin.fail() || choice < 1 || choice > sizes.size()) {
-                                std::cerr << "Neteisingas pasirinkimas." << std::endl;
-                                std::cin.clear();
-                                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                                break;
-                            }
-
-                            auto startSorting = std::chrono::high_resolution_clock::now();
-                            rusiuotiStudentus2(std::vector<int>{sizes[choice - 1]});
-                            auto endSorting = std::chrono::high_resolution_clock::now();
-                            std::chrono::duration<double> elapsedSorting = endSorting - startSorting;
-                            std::cout << "Rusiavimas ir issaugojimas uztruko: " << elapsedSorting.count() << " sekundziu." << std::endl;
-                        } else if (strategija == 3) {
-                                                        std::cout << "Pasirinkite, kuri studentu faila norite rusiuoti:" << std::endl;
-                            for (size_t i = 0; i < sizes.size(); ++i) {
-                                std::cout << i + 1 << " - studentai" << sizes[i] << ".txt" << std::endl;
-                            }
-                            std::cout << "Pasirinkimas: ";
-                            size_t choice;
-                            std::cin >> choice;
-
-                            if (std::cin.fail() || choice < 1 || choice > sizes.size()) {
-                                std::cerr << "Neteisingas pasirinkimas." << std::endl;
-                                std::cin.clear();
-                                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                                break;
-                            }
-
-                            auto startSorting = std::chrono::high_resolution_clock::now();
-                            rusiuotiStudentus3(std::vector<int>{sizes[choice - 1]});
-                            auto endSorting = std::chrono::high_resolution_clock::now();
-                            std::chrono::duration<double> elapsedSorting = endSorting - startSorting;
-                            std::cout << "Rusiavimas ir issaugojimas uztruko: " << elapsedSorting.count() << " sekundziu." << std::endl;
-                        }
-                        break;
+            case 5:
+                try
+                {
+                    std::cout << "Pasirinkite nauja rusiavimo buda:" << std::endl
+                              << "1 - Pagal varda" << std::endl
+                              << "2 - Pagal pavarde" << std::endl
+                              << "3 - Pagal vidurki" << std::endl
+                              << "4 - Pagal mediana" << std::endl
+                              << "Pasirinkimas: ";
+                    std::cin >> rusiavimoTipas;
+                    if (std::cin.fail())
+                    {
+                        throw std::invalid_argument("Netinkamas rusiavimo budo pasirinkimas.");
                     }
-                    case 2: {
-                        std::cout << "Pradedamas darbas su List tipo konteineriais" << endl;
-                        if(strategija == 1)
-                        {
-                            std::cout << "Pasirinkite, kuri studentu faila norite rusiuoti:" << std::endl;
-                            for (size_t i = 0; i < sizes.size(); ++i) {
-                                std::cout << i + 1 << " - studentai" << sizes[i] << ".txt" << std::endl;
-                            }
-                            std::cout << "Pasirinkimas: ";
-                            size_t choice;
-                            std::cin >> choice;
-
-                            if (std::cin.fail() || choice < 1 || choice > sizes.size()) {
-                                std::cerr << "Neteisingas pasirinkimas." << std::endl;
-                                std::cin.clear();
-                                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                                break;
-                            }
-
-                            auto startSorting = std::chrono::high_resolution_clock::now();
-                            rusiuotiList1(std::list<int>{sizes[choice - 1]});
-                            auto endSorting = std::chrono::high_resolution_clock::now();
-                            std::chrono::duration<double> elapsedSorting = endSorting - startSorting;
-                            std::cout << "Rusiavimas ir issaugojimas uztruko: " << elapsedSorting.count() << " sekundziu." << std::endl;
-                        }
-                        else if(strategija == 2)
-                        {
-                            std::cout << "Pasirinkite, kuri studentu faila norite rusiuoti:" << std::endl;
-                            for (size_t i = 0; i < sizes.size(); ++i) {
-                                std::cout << i + 1 << " - studentai" << sizes[i] << ".txt" << std::endl;
-                            }
-                            std::cout << "Pasirinkimas: ";
-                            size_t choice;
-                            std::cin >> choice;
-
-                            if (std::cin.fail() || choice < 1 || choice > sizes.size()) {
-                                std::cerr << "Neteisingas pasirinkimas." << std::endl;
-                                std::cin.clear();
-                                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                                break;
-                            }
-
-                            auto startSorting = std::chrono::high_resolution_clock::now();
-                            rusiuotiList2(std::list<int>{sizes[choice - 1]});
-                            auto endSorting = std::chrono::high_resolution_clock::now();
-                            std::chrono::duration<double> elapsedSorting = endSorting - startSorting;
-                            std::cout << "Rusiavimas ir issaugojimas uztruko: " << elapsedSorting.count() << " sekundziu." << std::endl;
-                        }
-                        else if(strategija == 3)
-                        {
-                           std::cout << "Pasirinkite, kuri studentu faila norite rusiuoti:" << std::endl;
-                            for (size_t i = 0; i < sizes.size(); ++i) {
-                                std::cout << i + 1 << " - studentai" << sizes[i] << ".txt" << std::endl;
-                            }
-                            std::cout << "Pasirinkimas: ";
-                            size_t choice;
-                            std::cin >> choice;
-
-                            if (std::cin.fail() || choice < 1 || choice > sizes.size()) {
-                                std::cerr << "Neteisingas pasirinkimas." << std::endl;
-                                std::cin.clear();
-                                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                                break;
-                            }
-
-                            auto startSorting = std::chrono::high_resolution_clock::now();
-                            rusiuotiList3(std::list<int>{sizes[choice - 1]});
-                            auto endSorting = std::chrono::high_resolution_clock::now();
-                            std::chrono::duration<double> elapsedSorting = endSorting - startSorting;
-                            std::cout << "Rusiavimas ir issaugojimas uztruko: " << elapsedSorting.count() << " sekundziu." << std::endl;     
-                        }
-                        break;
-                    }
-                    case 3: {
-                        std::cout << "Pradedamas darbas su Deque tipo konteineriais" << endl;
-                        if(strategija == 1)
-                        {
-                            std::cout << "Pasirinkite, kuri studentu faila norite rusiuoti:" << std::endl;
-                            for (size_t i = 0; i < sizes.size(); ++i) {
-                                std::cout << i + 1 << " - studentai" << sizes[i] << ".txt" << std::endl;
-                            }
-                            std::cout << "Pasirinkimas: ";
-                            size_t choice;
-                            std::cin >> choice;
-
-                            if (std::cin.fail() || choice < 1 || choice > sizes.size()) {
-                                std::cerr << "Neteisingas pasirinkimas." << std::endl;
-                                std::cin.clear();
-                                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                                break;
-                            }
-
-                            auto startSorting = std::chrono::high_resolution_clock::now();
-                            rusiuotiDeque1(std::deque<int>{sizes[choice - 1]});
-                            auto endSorting = std::chrono::high_resolution_clock::now();
-                            std::chrono::duration<double> elapsedSorting = endSorting - startSorting;
-                            std::cout << "Rusiavimas ir issaugojimas uztruko: " << elapsedSorting.count() << " sekundziu." << std::endl; 
-                        }
-                        else if(strategija == 2)
-                        {
-                            std::cout << "Pasirinkite, kuri studentu faila norite rusiuoti:" << std::endl;
-                            for (size_t i = 0; i < sizes.size(); ++i) {
-                                std::cout << i + 1 << " - studentai" << sizes[i] << ".txt" << std::endl;
-                            }
-                            std::cout << "Pasirinkimas: ";
-                            size_t choice;
-                            std::cin >> choice;
-
-                            if (std::cin.fail() || choice < 1 || choice > sizes.size()) {
-                                std::cerr << "Neteisingas pasirinkimas." << std::endl;
-                                std::cin.clear();
-                                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                                break;
-                            }
-
-                            auto startSorting = std::chrono::high_resolution_clock::now();
-                            rusiuotiDeque2(std::deque<int>{sizes[choice - 1]});
-                            auto endSorting = std::chrono::high_resolution_clock::now();
-                            std::chrono::duration<double> elapsedSorting = endSorting - startSorting;
-                            std::cout << "Rusiavimas ir issaugojimas uztruko: " << elapsedSorting.count() << " sekundziu." << std::endl; 
-                        }
-                        else if(strategija == 3)
-                        {
-                            std::cout << "Pasirinkite, kuri studentu faila norite rusiuoti:" << std::endl;
-                            for (size_t i = 0; i < sizes.size(); ++i) {
-                                std::cout << i + 1 << " - studentai" << sizes[i] << ".txt" << std::endl;
-                            }
-                            std::cout << "Pasirinkimas: ";
-                            size_t choice;
-                            std::cin >> choice;
-
-                            if (std::cin.fail() || choice < 1 || choice > sizes.size()) {
-                                std::cerr << "Neteisingas pasirinkimas." << std::endl;
-                                std::cin.clear();
-                                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                                break;
-                            }
-
-                            auto startSorting = std::chrono::high_resolution_clock::now();
-                            rusiuotiDeque3(std::deque<int>{sizes[choice - 1]});
-                            auto endSorting = std::chrono::high_resolution_clock::now();
-                            std::chrono::duration<double> elapsedSorting = endSorting - startSorting;
-                            std::cout << "Rusiavimas ir issaugojimas uztruko: " << elapsedSorting.count() << " sekundziu." << std::endl; 
-                        }
-                        break;
-                    }
+                    spausdintiGalutiniusBalus(studentai, "isvedimas.txt", rusiavimoTipas);
+                }
+                catch (const std::exception &e)
+                {
+                    std::cerr << "Rusiavimo budo keitimo klaida: " << e.what() << '\n';
                 }
                 break;
+            case 6:
+            {
+                runApp();
+                break;
             }
-            case 8:
+
+            case 0:
+                std::cout << "Programa baigia darba." << std::endl;
                 break;
             default:
-                cout << "Neatpazintas pasirinkimas. Bandykite dar karta." << std::endl;
+                std::cout << "Neatpazintas pasirinkimas. Bandykite dar karta." << std::endl;
                 break;
+            }
         }
-
-        if (pasirinkimas != 8) {
-            auto endOperation = chrono::high_resolution_clock::now();
-            chrono::duration<double> timeOperation = endOperation - startOperation;
-            double laikasOperation = timeOperation.count();
-            cout << "Operacija uztruko: " << laikasOperation << " s" << endl;
-            visoLaikoSuma += laikasOperation;
-            testuSkaicius++;
+        catch (const std::invalid_argument &e)
+        {
+            std::cerr << "Klaida: " << e.what() << '\n';
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
-    }
-
-    double vidurkis = visoLaikoSuma / testuSkaicius;
-    cout << "Keliu testu laiku vidurkis: " << vidurkis << " s" << endl;
+        catch (const std::exception &e)
+        {
+            std::cerr << "Isimtis: " << e.what() << '\n';
+        }
+    } while (pasirinkimas != 0);
 
     return 0;
 }
