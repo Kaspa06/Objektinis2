@@ -1,13 +1,14 @@
 #ifndef STUDENTAS_H
 #define STUDENTAS_H
 
-#include <string>
 #include <vector>
+#include <string>
+#include <chrono>
 
 struct Studentas {
     std::string vardas;
     std::string pavarde;
-    std::vector<int> nd;
+    std::vector<int> nd_rezultatai;
     int egzaminas;
 };
 
@@ -16,4 +17,4 @@ double mediana(std::vector<int> nd);
 void generateRandomGrades(Studentas& studentas);
 void generateRandomNamesAndGrades(Studentas& studentas);
 
-#endif
+#endif // STUDENTAS_H
