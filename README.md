@@ -47,24 +47,6 @@
 
 | Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
 | ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Time taken to read data       | 0.013963s     | 0.132645s      | 1.2919s         | 12.8522s         | 129.165s          |
-| Time taken to sort data       | 0.007979s     | 0.186501s      | 2.63058s        | 9.5421s          | 101.984s          |
-| Time taken to divide students | 0.000997s     | 0.007979s      | 0.077305s       | 1.65432s         | 9.93604s          |
-
-##### Vector data from current project with Classes
-
-| Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
-| ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Time taken to read data       | 0.013962s     | 0.133641s      | 1.3283s         | 13.0426s         | 134.065s          |
-| Time taken to sort data       | 0.00681s      | 0.175529s      | 0.7774s         | 7.856s           | 87.2209s          |
-| Time taken to divide students | 0.000997s     | 0.012965s      | 0.141132s       | 1.0874s          | 11.098s           |
-
-### Flag 02
-
-##### Vector data from 1.0 with Structures
-
-| Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
-| ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
 | Time taken to read data       | 0.0208152s    | 0.133641s      | 1.54981s        | 15.6058s         | 153.042s          |
 | Time taken to sort data       | 0.00485212s   | 0.0577385s     | 0.730288s       | 10.3186s         | 111.985s          |
 | Time taken to divide students | 0.000438091s  | 0.00416862s    | 0.0714406s      | 0.814364s        | 8.21541s          |
