@@ -5,9 +5,9 @@
     SSD: WDC PC SN530 512Gb
     GPU: Integrated with CPU
 
-### Strategy 1
+# Structures vs Classes
 
-##### Vector
+##### Vector data from 1.0 with Structures
 
 | Task                         | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
 | ---------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
@@ -15,23 +15,13 @@
 | Rusiavimas uztruko:          | 0.006081s     | 0.0552494s     | 0.538313s       | 6.18915s         | 60.0473s          |
 | Studentu skirstymas uztruko: | 0.002001s     | 0.00835907s    | 0.0876151s      | 1.10855s         | 11.3426s          |
 
-##### List
+##### Vector data from current project with Classes
 
 | Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
 | ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Time taken to read data       | 0.0202555s    | 0.166206s      | 1.56521s        | 15.9532s         | 166.259s          |
-| Time taken to sort data       | 0.00403285s   | 0.0604099s     | 0.799202s       | 10.1229s         | 114.698s          |
-| Time taken to divide students | 0.000769389s  | 0.0074186s     | 0.0936631s      | 0.969208s        | 9.71874s          |
-
-##### Deque
-
-| Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
-| ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Time taken to read data       | 0.0232768s    | 0.163882s      | 1.56918s        | 16.0526s         | 164.046s          |
-| Time taken to sort data       | 0.00670575s   | 0.0587848s     | 0.616905s       | 6.67419s         | 59.6123s          |
-| Time taken to divide students | 0.000968202s  | 0.00842794s    | 0.09097s        | 0.964875s        | 10.6465s          |
-
--
+| Time taken to read data       | 0.009483000s  | 0.092085000s   | 0.891146000s    | 9.9532s          | 103.299s          |
+| Time taken to sort data       | 0.0004988000s | 0.0138054000s  | 0.5996906000s   | 6.36929s         | 64.5623s          |
+| Time taken to divide students | 0.000998000s  | 0.009950000s   | 0.102526000s    | 9.69208s         | 100.9854s         |
 
 ### Strategy 2
 
@@ -146,3 +136,10 @@ This guide will walk you through the process of running a Makefile for compiling
 - Run the program by typing `./run` on macOS or `run.exe` on Windows, and press Enter.
 
 Congratulations! You've successfully compiled and executed your C/C++ program using a Makefile. If you encounter any errors during compilation, check your Makefile and source code for issues.
+
+### 6\. How To Run Code With Flags
+
+-Type `make optimize`
+-Type `./run_01 `
+`./run_02`
+`./run_03`
