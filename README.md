@@ -139,7 +139,7 @@ Congratulations! You've successfully compiled and executed your C/C++ program us
 
 ### 6\. How To Run Code With Flags
 
--Type `make optimize`
--Type `./run_01 `
-`./run_02`
-`./run_03`
+- Type `make optimize`
+- Type `./run_01 `
+  `./run_02`
+  `./run_03`
