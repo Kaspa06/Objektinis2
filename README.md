@@ -23,9 +23,9 @@
 | Time taken to sort data       | 0.0004988000s | 0.0138054000s  | 0.5996906000s   | 6.36929s         | 64.5623s          |
 | Time taken to divide students | 0.000998000s  | 0.009950000s   | 0.102526000s    | 9.69208s         | 100.9854s         |
 
-### Strategy 2
+### Flag 01
 
-##### Vector
+##### Vector data from 1.0 with Structures
 
 | Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
 | ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
@@ -33,7 +33,7 @@
 | Time taken to sort data       | 0.00586344s   | 0.0549243s     | 0.591112s       | 5.76212s         | 66.2378s          |
 | Time taken to divide students | 0.000764175s  | 0.00705321s    | 0.0999966s      | 0.880787s        | 8.2326s           |
 
-##### List
+##### Vector data from current project with Classes
 
 | Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
 | ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
@@ -41,7 +41,9 @@
 | Time taken to sort data       | 0.002991s     | 0.050864s      | 0.670208s       | 8.34269s         | 100.224s          |
 | Time taken to divide students | 0.00009843s   | 0.004987s      | 0.061835s       | 0.63929s         | 9.9561s           |
 
-##### Deque
+### Flag 02
+
+##### Vector data from 1.0 with Structures
 
 | Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
 | ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
@@ -49,9 +51,7 @@
 | Time taken to sort data       | 0.007979s     | 0.186501s      | 2.63058s        | 9.5421s          | 101.984s          |
 | Time taken to divide students | 0.000997s     | 0.007979s      | 0.077305s       | 1.65432s         | 9.93604s          |
 
-### Strategy 3
-
-#### Vector
+##### Vector data from current project with Classes
 
 | Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
 | ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
@@ -59,7 +59,9 @@
 | Time taken to sort data       | 0.00681s      | 0.175529s      | 0.7774s         | 7.856s           | 87.2209s          |
 | Time taken to divide students | 0.000997s     | 0.012965s      | 0.141132s       | 1.0874s          | 11.098s           |
 
-#### List
+### Flag 02
+
+##### Vector data from 1.0 with Structures
 
 | Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
 | ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
@@ -67,7 +69,25 @@
 | Time taken to sort data       | 0.00485212s   | 0.0577385s     | 0.730288s       | 10.3186s         | 111.985s          |
 | Time taken to divide students | 0.000438091s  | 0.00416862s    | 0.0714406s      | 0.814364s        | 8.21541s          |
 
-#### Deque
+##### Vector data from current project with Classes
+
+| Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
+| ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
+| Time taken to read data       | 0.013962s     | 0.129581s      | 1.28972s        | 12.8755s         | 138.635s          |
+| Time taken to sort data       | 0.007978s     | 0.187784s      | 0.72893s        | 7.6598s          | 78.6523s          |
+| Time taken to divide students | 0.000998s     | 0.009481s      | 0.100241s       | 1.0698s          | 10.5069s          |
+
+### Flag 03
+
+##### Vector data from 1.0 with Structures
+
+| Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
+| ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
+| Time taken to read data       | 0.0208152s    | 0.133641s      | 1.54981s        | 15.6058s         | 153.042s          |
+| Time taken to sort data       | 0.00485212s   | 0.0577385s     | 0.730288s       | 10.3186s         | 111.985s          |
+| Time taken to divide students | 0.000438091s  | 0.00416862s    | 0.0714406s      | 0.814364s        | 8.21541s          |
+
+##### Vector data from current project with Classes
 
 | Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
 | ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
@@ -140,6 +160,6 @@ Congratulations! You've successfully compiled and executed your C/C++ program us
 ### 6\. How To Run Code With Flags
 
 - Type `make optimize`
-- Type `./run_01 `
-  `./run_02`
-  `./run_03`
+- Type `./run_o1 `
+  `./run_o2`
+  `./run_o3`
