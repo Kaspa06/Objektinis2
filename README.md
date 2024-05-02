@@ -29,17 +29,17 @@
 
 | Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
 | ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Time taken to read data       | 0.0209572s    | 0.163544s      | 1.6192s         | 15.753s          | 154.891s          |
-| Time taken to sort data       | 0.00586344s   | 0.0549243s     | 0.591112s       | 5.76212s         | 66.2378s          |
-| Time taken to divide students | 0.000764175s  | 0.00705321s    | 0.0999966s      | 0.880787s        | 8.2326s           |
+| Time taken to read data       | 0.012954s     | 0.119683s      | 1.16192s        | 11.5372s         | 117.231s          |
+| Time taken to sort data       | 0.001994s     | 0.027924s      | 1.22572s        | 13.6321s         | 16.1335s          |
+| Time taken to divide students | 0.000764175s  | 0.001995s      | 0.021962s       | 0.880787s        | 10.6563s          |
 
 ##### Vector data from current project with Classes
 
 | Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
 | ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Time taken to read data       | 0.012965s     | 0.138629s      | 1.3085s         | 12.9733s         | 127.401s          |
-| Time taken to sort data       | 0.002991s     | 0.050864s      | 0.670208s       | 8.34269s         | 100.224s          |
-| Time taken to divide students | 0.00009843s   | 0.004987s      | 0.061835s       | 0.63929s         | 9.9561s           |
+| Time taken to read data       | 0.006981000s  | 0.065823000s   | 0.633815000s    | 6.287439000s     | 61.8652s          |
+| Time taken to sort data       | 0.000998000s  | 0.042885000s   | 0.430234000s    | 4.37760320s      | 44.22984s         |
+| Time taken to divide students | 0.000000000s  | 0.002991000s   | 0.023937000s    | 0.268325000s     | 2.765211s         |
 
 ### Flag 02
 
@@ -47,17 +47,17 @@
 
 | Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
 | ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Time taken to read data       | 0.0208152s    | 0.133641s      | 1.54981s        | 15.6058s         | 153.042s          |
-| Time taken to sort data       | 0.00485212s   | 0.0577385s     | 0.730288s       | 10.3186s         | 111.985s          |
-| Time taken to divide students | 0.000438091s  | 0.00416862s    | 0.0714406s      | 0.814364s        | 8.21541s          |
+| Time taken to read data       | 0.012965s     | 0.118711s      | 1.17678s        | 12.5630s         | 120.65483s        |
+| Time taken to sort data       | 0.000981s     | 0.027925s      | 0.280301s       | 3.05608s         | 32.8461s          |
+| Time taken to divide students | 0.000998s     | 0.002991s      | 0.022938s       | 0.36046s         | 5.605401s         |
 
 ##### Vector data from current project with Classes
 
 | Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
 | ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Time taken to read data       | 0.013962s     | 0.129581s      | 1.28972s        | 12.8755s         | 138.635s          |
-| Time taken to sort data       | 0.007978s     | 0.187784s      | 0.72893s        | 7.6598s          | 78.6523s          |
-| Time taken to divide students | 0.000998s     | 0.009481s      | 0.100241s       | 1.0698s          | 10.5069s          |
+| Time taken to read data       | 0.007978000s  | 0.063828000s   | 0.640313000s    | 6.2466450s       | 63.642132s        |
+| Time taken to sort data       | 0.000997000s  | 0.042885000s   | 0.21157780s     | 0.56131s         | 7.65231s          |
+| Time taken to divide students | 0.000000000s  | 0.003017000s   | 0.022122000s    | 0.3056012s       | 3.0654s           |
 
 ### Flag 03
 
@@ -73,21 +73,25 @@
 
 | Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
 | ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Time taken to read data       | 0.013962s     | 0.129581s      | 1.28972s        | 12.8755s         | 138.635s          |
-| Time taken to sort data       | 0.007978s     | 0.187784s      | 0.72893s        | 7.6598s          | 78.6523s          |
-| Time taken to divide students | 0.000998s     | 0.009481s      | 0.100241s       | 1.0698s          | 10.5069s          |
+| Time taken to read data       | 0.006987000s  | 0.064826000s   | 0.6326890s      | 6.262007000s     | 64.8594s          |
+| Time taken to sort data       | 0.000997000s  | 0.042884000s   | 0.2950890s      | 3.173142000s     | 30.564123s        |
+| Time taken to divide students | 0.000997000s  | 0.002991000s   | 0.0354300s      | 0.257002000s     | 2.654561s         |
 
-**Comments:**
+**RUN FILE SIZES**
 
-List strategy outperforms both Vector and Deque in terms of time taken to read data for all student sizes. However, when it comes to sorting data and dividing students, the Vector strategy seems to perform better compared to List and Deque, especially as the number of students increases.
+#### Structures
 
-The decision on which strategy is better depends on the specific requirements and constraints of the application. For instance:
+- run - 538KB
+- run_O1 - 393KB
+- run_O2 - 397KB
+- run_O3 - 394KB
 
-- **Vector**: Efficient for tasks that require frequent access to elements and relatively fewer insertions and deletions.
-- **List**: Suitable for scenarios where frequent insertions and deletions are required, as it offers constant-time insertion and deletion operations.
-- **Deque**: A compromise between Vector and List, offering efficient random access to elements and constant-time insertion and deletion at both ends.
+#### Classes
 
-Consider the specific operations and performance requirements of your application to determine the most appropriate container strategy.
+- run - 568KB
+- run_O1 - 374KB
+- run_O2 - 371KB
+- run_O3 - 411KB
 
 # Running a Makefile for C/C++ Projects
 
