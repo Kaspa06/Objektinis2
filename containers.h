@@ -12,4 +12,3 @@ void performAction(ContainerType containerChoice, Action actionChoice, const std
 void runApp();
 
 #endif
-
