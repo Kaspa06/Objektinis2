@@ -1,193 +1,146 @@
-#include "containers.h"
-#include "funkcijosVector.h"
-#include "funkcijos.h"
 #include "studentas.h"
-#include <iostream>
-#include <vector>
-#include <limits>
-#include <deque>
-#include <list>
-#include <string>
-#include <chrono>
 #include <algorithm>
+#include <cstdlib> 
 #include <fstream>
-#include <sstream>
-#include <iomanip>
-#include <random>
-#include <dirent.h>
-#include <cstdlib>
-#include <ctime>
-#include <limits>
-#include <stdexcept>
+#include <iostream>
 
-using namespace std;
+// Constructor
+Studentas::Studentas() : egzaminas(0) {}
 
-vector<string> listFilesInDirectory() {
-    vector<string> files;
-    DIR *dir;
-    struct dirent *ent;
-    if ((dir = opendir(".")) != NULL) {
-        while ((ent = readdir(dir)) != NULL) {
-            string filename = ent->d_name;
-            if (filename != "." && filename != "..") {
-                files.push_back(filename);
-            }
-        }
-        closedir(dir);
-    } else {
-        cerr << "Could not open the directory." << endl;
-    }
-    return files;
+// Constructor
+Studentas::Studentas(const std::string& vardas, const std::string& pavarde)
+    : vardas(vardas), pavarde(pavarde), egzaminas(0) {}
+
+// Destructor
+Studentas::~Studentas() {
+    nd_rezultatai.clear();
+    vardas.clear();
+    pavarde.clear();
+    egzaminas = 0;
 }
 
-int main()
+//Copying constructor
+Studentas::Studentas(const Studentas &copy)
+: vardas(copy.vardas), pavarde(copy.pavarde), nd_rezultatai(copy.nd_rezultatai), egzaminas(copy.egzaminas) {}
+
+//Copy assignment
+Studentas& Studentas::operator=(const Studentas& copy) 
 {
-    srand(static_cast<unsigned int>(time(nullptr)));
-
-    std::vector<Studentas> studentai;
-    int pasirinkimas;
-    int rusiavimoTipas;
-    std::vector<int> sizes = {1000, 10000, 100000, 1000000, 10000000};
-    std::vector<Studentas> kietiakiai, vargsiukai;
-
-    do
+    if(this !=&copy)
     {
-        try
-        {
-            std::cout << "Meniu:" << std::endl
-                      << "1 - ivesti studentu duomenis rankiniu budu" << std::endl
-                      << "2 - Generuoti pazymius esamiems studentams" << std::endl
-                      << "3 - Generuoti naujus studentus su atsitiktiniais pazymiais" << std::endl
-                      << "4 - Skaityti duomenis is failo" << std::endl
-                      << "5 - Pakeisti rusiavimo tipa" << std::endl
-                      << "6 - Rusiuoti studentus sugeneruotuose failuose" << std::endl
-                      << "0 - Baigti darba" << std::endl
-                      << "Pasirinkite veiksma: ";
-            std::cin >> pasirinkimas;
-            if (!std::cin)
-            {
-                throw std::invalid_argument("Netinkamas pasirinkimas.");
-            }
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        vardas = copy.vardas;
+        pavarde = copy.pavarde;
+        nd_rezultatai = copy.nd_rezultatai;
+        egzaminas = copy.egzaminas;
+    }
+    return *this;
+}
 
-            switch (pasirinkimas)
-            {
-            case 1:
-                try
-                {
-                    manualInput(studentai);
-                    spausdintiGalutiniusBalus(studentai, "isvedimas.txt");
-                }
-                catch (const std::exception &e)
-                {
-                    std::cerr << "ivedimo klaida: " << e.what() << '\n';
-                }
-                break;
-            case 2:
-                try
-                {
-                    generateGradesOnly(studentai);
-                }
-                catch (const std::exception &e)
-                {
-                    std::cerr << "Pazymiu generavimo klaida: " << e.what() << '\n';
-                }
-                break;
-            case 3:
-                try
-                {
-                    cout << fixed << setprecision(2);
-                    cout << "Studentu galutiniai balai:\n";
-                    cout << "----------------------------------------------------------------\n";
-                    cout << "Vardas" << setw(15) << "Pavarde" << setw(20) << "Galutinis (Vid.)"
-                         << setw(20) << "Galutinis (Med.)\n";
-                    cout << "----------------------------------------------------------------\n";
-
-                    for (int i = 0; i < 6; i++)
-                    {
-                        Studentas naujasStudentas;
-                        naujasStudentas.randomStudentai(); 
-                        studentai.push_back(naujasStudentas);
-
-                        double galutinisVidurkis = naujasStudentas.calcGalutinis(true);
-                        double galutineMediana = naujasStudentas.calcGalutinis(false);
-                        cout << left << setw(15) << naujasStudentas.getVardas() << setw(15)
-                             << naujasStudentas.getPavarde() << setw(20) << galutinisVidurkis << setw(20)
-                             << galutineMediana << "\n";
-                    }
-                    cout << "----------------------------------------------------------------\n";
-                }
-                catch (const std::exception &e)
-                {
-                    std::cerr << "Studentu generavimo klaida: " << e.what() << '\n';
-                }
-                break;
-             case 4: {
-                    // List files in the directory
-                    vector<string> files = listFilesInDirectory();
-                    // Display available files
-                    cout << "Pasirinkite faila:" << endl;
-                    for (size_t i = 0; i < files.size(); ++i) {
-                        cout << i + 1 << " - " << files[i] << endl;
-                    }
-                    // Get user choice
-                    int failoPasirinkimas;
-                    cout << "Pasirinkimas: ";
-                    cin >> failoPasirinkimas;
-                    if (cin.fail() || failoPasirinkimas < 1 || failoPasirinkimas > static_cast<int>(files.size())) {
-                        throw invalid_argument("Netinkamas failo pasirinkimas.");
-                    }
-                    // Use the selected file
-                    string selectedFile = files[failoPasirinkimas - 1];
-                    cout << "Pasirinktas failas: " << selectedFile << endl;
-                    break;
-                }
-            case 5:
-                try
-                {
-                    std::cout << "Pasirinkite nauja rusiavimo buda:" << std::endl
-                              << "1 - Pagal varda" << std::endl
-                              << "2 - Pagal pavarde" << std::endl
-                              << "3 - Pagal vidurki" << std::endl
-                              << "4 - Pagal mediana" << std::endl
-                              << "Pasirinkimas: ";
-                    std::cin >> rusiavimoTipas;
-                    if (std::cin.fail())
-                    {
-                        throw std::invalid_argument("Netinkamas rusiavimo budo pasirinkimas.");
-                    }
-                    spausdintiGalutiniusBalus(studentai, "isvedimas.txt", rusiavimoTipas);
-                }
-                catch (const std::exception &e)
-                {
-                    std::cerr << "Rusiavimo budo keitimo klaida: " << e.what() << '\n';
-                }
-                break;
-            case 6:
-            {
-                runApp();
-                break;
-            }
-
-            case 0:
-                std::cout << "Programa baigia darba." << std::endl;
-                break;
-            default:
-                std::cout << "Neatpazintas pasirinkimas. Bandykite dar karta." << std::endl;
-                break;
-            }
+ // Move assignment operator
+    Studentas& Studentas::operator=(Studentas&& copy) noexcept {
+        if (this!= &copy) {
+            // Swap the members of the current object with the members of the other object
+            std::swap(vardas, copy.vardas);
+            std::swap(pavarde, copy.pavarde);
+            std::swap(nd_rezultatai, copy.nd_rezultatai);
+            std::swap(egzaminas, copy.egzaminas);
         }
-        catch (const std::invalid_argument &e)
-        {
-            std::cerr << "Klaida: " << e.what() << '\n';
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        }
-        catch (const std::exception &e)
-        {
-            std::cerr << "Isimtis: " << e.what() << '\n';
-        }
-    } while (pasirinkimas != 0);
+        return *this;
+    }
 
-    return 0;
+// Public member functions
+void Studentas::setVardas(std::string vardas) {
+    this-> vardas = vardas;
+}
+std::string Studentas::getVardas() const {
+    return vardas;
+}
+
+void Studentas::setPavarde(std::string pavarde) {
+    this -> pavarde = pavarde;
+}
+
+std::string Studentas::getPavarde() const {
+    return pavarde;
+}
+
+void Studentas::setNamuDarbai(const std::vector<int>& nd) {
+    nd_rezultatai = nd;
+}
+
+std::vector<int> Studentas::getNamuDarbai() const {
+    return nd_rezultatai;
+}
+
+void Studentas::setEgzaminas(int egzaminas) {
+    this->egzaminas = egzaminas;
+}
+
+void Studentas::addNamuDarbai(int pazymys)
+{
+    nd_rezultatai.push_back(pazymys);
+}
+
+int Studentas::getEgzaminas() const {
+    return egzaminas;
+}
+
+double Studentas::calcVidurkis() const {
+    double suma = 0.0;
+    for (int pazymys : nd_rezultatai) {
+        suma += pazymys;
+    }
+    return nd_rezultatai.empty() ? 0.0 : suma / nd_rezultatai.size();
+}
+
+double Studentas::calcMediana() const {
+    if (nd_rezultatai.empty()) return 0.0;
+    std::vector<int> tempNamuDarbai = nd_rezultatai;
+    std::sort(tempNamuDarbai.begin(), tempNamuDarbai.end());
+    int dydis = tempNamuDarbai.size();
+    return (dydis % 2 == 0) ? (tempNamuDarbai[dydis / 2 - 1] + tempNamuDarbai[dydis / 2]) / 2.0 : tempNamuDarbai[dydis / 2];
+}
+
+double Studentas::calcGalutinis(bool useVidurkis) const {
+    double galutinis = useVidurkis ? (0.4 * calcVidurkis() + 0.6 * egzaminas) : (0.4 * calcMediana() + 0.6 * egzaminas);
+    return galutinis;
+}
+
+void Studentas::randomND() {
+    nd_rezultatai.resize(rand() % 10 + 1);
+    for (int& pazymys : nd_rezultatai) {
+        pazymys = rand() % 10 + 1;
+    }
+    egzaminas = rand() % 10 + 1;
+}
+
+void Studentas::randomStudentai() {
+    const char* vardai[] = {"Jonas", "Petras", "Antanas", "Juozas", "Kazimieras"};
+    const char* pavardes[] = {"Jonaitis", "Petraitis", "Antanaitis", "Juozaitis", "Kazimieraitis"};
+    int vardasIndex = rand() % 6;
+    int pavardeIndex = rand() % 6;
+    vardas = vardai[vardasIndex];
+    pavarde = pavardes[pavardeIndex];
+    randomND();
+}
+
+// Output Operator (Serialization)
+std::ostream& operator<<(std::ostream& output, const Studentas &student) {
+    output << student.vardas << " " << student.pavarde << " " << student.egzaminas << " ";
+    for (int pazymys : student.nd_rezultatai) {
+        output << std::to_string(pazymys) << " "; // Convert integer to string before output
+    }
+    return output;
+}
+
+// Input Operator (Deserialization)
+std::istream& operator>>(std::istream& input, Studentas &student) {
+    input >> student.vardas >> student.pavarde;
+    input >> student.egzaminas;
+    student.nd_rezultatai.clear();
+    int pazymys;
+    while (input >> pazymys) {
+        student.nd_rezultatai.push_back(pazymys);
+    }
+    return input;
 }
