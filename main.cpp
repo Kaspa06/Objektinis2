@@ -1,7 +1,5 @@
 #include "containers.h"
-#include "funkcijosDeque.h"
 #include "funkcijosVector.h"
-#include "funkcijosList.h"
 #include "funkcijos.h"
 #include "studentas.h"
 #include <iostream>
@@ -98,13 +96,26 @@ int main()
             case 3:
                 try
                 {
-                    for (int i = 0; i < 5; ++i)
+                    cout << fixed << setprecision(2);
+                    cout << "Studentu galutiniai balai:\n";
+                    cout << "----------------------------------------------------------------\n";
+                    cout << "Vardas" << setw(15) << "Pavarde" << setw(20) << "Galutinis (Vid.)"
+                         << setw(20) << "Galutinis (Med.)\n";
+                    cout << "----------------------------------------------------------------\n";
+
+                    for (int i = 0; i < 6; i++)
                     {
                         Studentas naujasStudentas;
-                        generateRandomNamesAndGrades(naujasStudentas);
+                        naujasStudentas.randomStudentai(); 
                         studentai.push_back(naujasStudentas);
+
+                        double galutinisVidurkis = naujasStudentas.calcGalutinis(true);
+                        double galutineMediana = naujasStudentas.calcGalutinis(false);
+                        cout << left << setw(15) << naujasStudentas.getVardas() << setw(15)
+                             << naujasStudentas.getPavarde() << setw(20) << galutinisVidurkis << setw(20)
+                             << galutineMediana << "\n";
                     }
-                    spausdintiGalutiniusBalus(studentai, "isvedimas.txt");
+                    cout << "----------------------------------------------------------------\n";
                 }
                 catch (const std::exception &e)
                 {
