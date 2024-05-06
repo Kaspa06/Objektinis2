@@ -3,7 +3,7 @@
 
 #include <vector>
 
-enum class ContainerType { None, Vector, List, Deque };
+enum class ContainerType { None, Vector};
 enum class Action { None, Generate, Sort };
 ContainerType getContainerChoice();
 Action getActionChoice();
@@ -12,4 +12,3 @@ void performAction(ContainerType containerChoice, Action actionChoice, const std
 void runApp();
 
 #endif
-
