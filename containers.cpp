@@ -1,56 +1,26 @@
-#include "funkcijosDeque.h"
 #include "funkcijosVector.h"
-#include "funkcijosList.h"
 #include "funkcijos.h"
 #include "studentas.h"
 #include <iostream>
 #include <vector>
 #include <limits>
-#include <deque>
-#include <list>
-#include <string>
+#include <fstream>
 #include <chrono>
 #include <algorithm>
-#include <fstream>
 #include <sstream>
 #include <iomanip>
 #include <random>
 #include <cstdlib>
 #include <ctime>
-#include <limits>
 #include <stdexcept>
 #include <cstring>
 #include <dirent.h>
 
-enum class ContainerType { None, Vector, List, Deque };
+enum class ContainerType { None, Vector };
 enum class Action { None, Generate, Sort };
 
 ContainerType getContainerChoice() {
-    int choice;
-    while (true) {
-        std::cout << "Pasirinkite konteinerio tipa:\n"
-                  << "1. Vector\n"
-                  << "2. List\n"
-                  << "3. Deque\n"
-                  << "Pasirinkimas: ";
-        std::cin >> choice;
-        if (std::cin.fail()) {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "iveskite skaiciu.\n";
-        } else if (choice >= 1 && choice <= 3) {
-            break;
-        } else {
-            std::cout << "Netinkamas pasirinkimas. Prasome bandyti dar karta.\n";
-        }
-    }
-
-    switch (choice) {
-        case 1: return ContainerType::Vector;
-        case 2: return ContainerType::List;
-        case 3: return ContainerType::Deque;
-        default: return ContainerType::None;
-    }
+    return ContainerType::Vector; // Vector is set as the default choice
 }
 
 Action getActionChoice() {
@@ -119,23 +89,10 @@ std::string getSortingFileChoice() {
 }
 
 void performAction(ContainerType containerChoice, Action actionChoice, const std::vector<int>& sizes) {
-if (actionChoice == Action::Generate) {
+    if (actionChoice == Action::Generate) {
         for (int size : sizes) {
             auto start = std::chrono::high_resolution_clock::now();
-            switch (containerChoice) {
-                case ContainerType::Vector:
-                    generateStudentFilesVector(size);
-                    break;
-                case ContainerType::List:
-                    generateStudentFilesList(size);
-                    break;
-                case ContainerType::Deque:
-                    generateStudentFilesDeque(size);
-                    break;
-                default:
-                    std::cout << "Nepasirinktas tinkamas konteinerio tipas.\n";
-                    break;
-            }
+            generateStudentFilesVector(size); // Only Vector is used
             auto end = std::chrono::high_resolution_clock::now();
             std::chrono::duration<double> elapsed = end - start;
             std::cout << "Uzimtas laikas generuojant sio dydzio faila: " << size << ": " << elapsed.count() << "s\n";
@@ -170,38 +127,6 @@ if (actionChoice == Action::Generate) {
                             break;
                         case 3:
                             rusiuotStudentusVector3(filename);
-                            break;
-                        default:
-                            std::cout << "Netinkamas rusiavimo metodo pasirinkimas.\n";
-                            break;
-                    }
-                    break;
-                case ContainerType::List:
-                    switch (sortingMethod) {
-                        case 1:
-                            rusiuotiStudentusList(filename);
-                            break;
-                        case 2:
-                            rusiuotiStudentusList2(filename);
-                            break;
-                        case 3:
-                            rusiuotiStudentusList3(filename);
-                            break;
-                        default:
-                            std::cout << "Netinkamas rusiavimo metodo pasirinkimas.\n";
-                            break;
-                    }
-                    break;
-                case ContainerType::Deque:
-                    switch (sortingMethod) {
-                        case 1:
-                            rusiuotiStudentusDeque(filename);
-                            break;
-                        case 2:
-                            rusiuotiStudentusDeque2(filename);
-                            break;
-                        case 3:
-                            rusiuotiStudentusDeque3(filename);
                             break;
                         default:
                             std::cout << "Netinkamas rusiavimo metodo pasirinkimas.\n";
@@ -244,5 +169,3 @@ void runApp() {
         }
     }
 }
-
-
