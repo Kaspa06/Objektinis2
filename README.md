@@ -33,19 +33,11 @@ In C++, the Rule of Five refers to a set of guidelines concerning resource manag
 
 Responsible for releasing resources acquired by the object.
 
-cpp
-
-Copy code
-
 `// Destructor Studentas::~Studentas() {     nd_rezultatai.clear();     vardas.clear();     pavarde.clear();     egzaminas = 0; }`
 
 ### Copy Constructor
 
 Creates a new object as a copy of an existing object.
-
-cpp
-
-Copy code
 
 `// Copy Constructor Studentas::Studentas(const Studentas &copy) : vardas(copy.vardas), pavarde(copy.pavarde), nd_rezultatai(copy.nd_rezultatai), egzaminas(copy.egzaminas) {}`
 
