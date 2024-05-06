@@ -53,29 +53,17 @@ Copy code
 
 Assigns the state of one object to another existing object.
 
-cpp
-
-Copy code
-
 `// Copy Assignment Operator Studentas& Studentas::operator=(const Studentas& copy)  {     if(this !=&copy)     {         vardas = copy.vardas;         pavarde = copy.pavarde;         nd_rezultatai = copy.nd_rezultatai;         egzaminas = copy.egzaminas;     }     return *this; }`
 
 ### Move Constructor
 
 Transfers resources from a temporary object to a new object.
 
-cpp
-
-Copy code
-
 `// Move Constructor Studentas::Studentas(Studentas&& copy) noexcept : vardas(std::move(copy.vardas)), pavarde(std::move(copy.pavarde)), nd_rezultatai(std::move(copy.nd_rezultatai)), egzaminas(copy.egzaminas) {}`
 
 ### Move Assignment Operator
 
 Transfers resources from one object to another existing object.
-
-cpp
-
-Copy code
 
 `// Move Assignment Operator Studentas& Studentas::operator=(Studentas&& copy) noexcept {     if (this!= &copy) {         std::swap(vardas, copy.vardas);         std::swap(pavarde, copy.pavarde);         std::swap(nd_rezultatai, copy.nd_rezultatai);         std::swap(egzaminas, copy.egzaminas);     }     return *this; }`
 
@@ -87,19 +75,11 @@ The `Studentas` class overloads the input and output operators (`operator<<` and
 
 The output operator `operator<<` is overloaded to serialize a `Studentas` object to an output stream. It prints the `vardas`, `pavarde`, `egzaminas`, and `nd_rezultatai` member variables to the output stream.
 
-cpp
-
-Copy code
-
 `// Output Operator (Serialization) std::ostream& operator<<(std::ostream& output, const Studentas &student) {     output << student.vardas << " " << student.pavarde << " " << student.egzaminas << " ";     for (int pazymys : student.nd_rezultatai) {         output << std::to_string(pazymys) << " "; // Convert integer to string before output     }     return output; }`
 
 ### Input Operator (`operator>>`)
 
 The input operator `operator>>` is overloaded to deserialize a `Studentas` object from an input stream. It reads `vardas`, `pavarde`, `egzaminas`, and `nd_rezultatai` from the input stream and constructs a `Studentas` object accordingly.
-
-cpp
-
-Copy code
 
 `// Input Operator (Deserialization) std::istream& operator>>(std::istream& input, Studentas &student) {     input >> student.vardas >> student.pavarde;     input >> student.egzaminas;     student.nd_rezultatai.clear();     int pazymys;     while (input >> pazymys) {         student.nd_rezultatai.push_back(pazymys);     }     return input; }`
 
