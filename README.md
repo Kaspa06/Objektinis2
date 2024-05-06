@@ -5,97 +5,125 @@
     SSD: WDC PC SN530 512Gb
     GPU: Integrated with CPU
 
-### Strategy 1
+# Structures vs Classes
 
-##### Vector
-
-| Task                         | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
-| ---------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Skaitymas uztruko:           | 0.015444s     | 0.166344s      | 1.59188s        | 15.4619s         | 165.159s          |
-| Rusiavimas uztruko:          | 0.006081s     | 0.0552494s     | 0.538313s       | 6.18915s         | 60.0473s          |
-| Studentu skirstymas uztruko: | 0.002001s     | 0.00835907s    | 0.0876151s      | 1.10855s         | 11.3426s          |
-
-##### List
+##### Data from 1.1
 
 | Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
 | ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Time taken to read data       | 0.0202555s    | 0.166206s      | 1.56521s        | 15.9532s         | 166.259s          |
-| Time taken to sort data       | 0.00403285s   | 0.0604099s     | 0.799202s       | 10.1229s         | 114.698s          |
-| Time taken to divide students | 0.000769389s  | 0.0074186s     | 0.0936631s      | 0.969208s        | 9.71874s          |
+| Time taken to read data       | 0.006987000s  | 0.064826000s   | 0.6326890s      | 6.262007000s     | 64.8594s          |
+| Time taken to sort data       | 0.000997000s  | 0.042884000s   | 0.2950890s      | 3.173142000s     | 30.564123s        |
+| Time taken to divide students | 0.000997000s  | 0.002991000s   | 0.0354300s      | 0.257002000s     | 2.654561s         |
 
-##### Deque
-
-| Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
-| ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Time taken to read data       | 0.0232768s    | 0.163882s      | 1.56918s        | 16.0526s         | 164.046s          |
-| Time taken to sort data       | 0.00670575s   | 0.0587848s     | 0.616905s       | 6.67419s         | 59.6123s          |
-| Time taken to divide students | 0.000968202s  | 0.00842794s    | 0.09097s        | 0.964875s        | 10.6465s          |
-
--
-
-### Strategy 2
-
-##### Vector
+##### Data with "Rule of Five"
 
 | Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
 | ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Time taken to read data       | 0.0209572s    | 0.163544s      | 1.6192s         | 15.753s          | 154.891s          |
-| Time taken to sort data       | 0.00586344s   | 0.0549243s     | 0.591112s       | 5.76212s         | 66.2378s          |
-| Time taken to divide students | 0.000764175s  | 0.00705321s    | 0.0999966s      | 0.880787s        | 8.2326s           |
+| Time taken to read data       | 0.006981000s  | 0.063828000s   | 0.628348000s    | 6.200408000s     | 64.8594s          |
+| Time taken to sort data       | 0.000952000s  | 0.048868000s   | 0.245346400s    | 2.10981s         | 22.098095s        |
+| Time taken to divide students | 0.000000000s  | 0.002992000s   | 0.026930000s    | 0.34083900s      | 3.61350350s       |
 
-##### List
+# Rule of Five and Overloaded Methods
 
-| Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
-| ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Time taken to read data       | 0.012965s     | 0.138629s      | 1.3085s         | 12.9733s         | 127.401s          |
-| Time taken to sort data       | 0.002991s     | 0.050864s      | 0.670208s       | 8.34269s         | 100.224s          |
-| Time taken to divide students | 0.00009843s   | 0.004987s      | 0.061835s       | 0.63929s         | 9.9561s           |
+## Rule of Five
 
-##### Deque
+In C++, the Rule of Five refers to a set of guidelines concerning resource management for classes that manage dynamic memory allocation or external resources. The Rule of Five consists of five special member functions that need to be defined or explicitly disabled if one of them is used:
 
-| Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
-| ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Time taken to read data       | 0.013963s     | 0.132645s      | 1.2919s         | 12.8522s         | 129.165s          |
-| Time taken to sort data       | 0.007979s     | 0.186501s      | 2.63058s        | 9.5421s          | 101.984s          |
-| Time taken to divide students | 0.000997s     | 0.007979s      | 0.077305s       | 1.65432s         | 9.93604s          |
+### Destructor
 
-### Strategy 3
+##### Responsible for releasing resources acquired by the object.
 
-#### Vector
+    Studentas::~Studentas() {
+    nd_rezultatai.clear();
+    vardas.clear();
+    pavarde.clear();
+    egzaminas = 0;
 
-| Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
-| ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Time taken to read data       | 0.013962s     | 0.133641s      | 1.3283s         | 13.0426s         | 134.065s          |
-| Time taken to sort data       | 0.00681s      | 0.175529s      | 0.7774s         | 7.856s           | 87.2209s          |
-| Time taken to divide students | 0.000997s     | 0.012965s      | 0.141132s       | 1.0874s          | 11.098s           |
+}
 
-#### List
+### Copy Constructor
 
-| Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
-| ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Time taken to read data       | 0.0208152s    | 0.133641s      | 1.54981s        | 15.6058s         | 153.042s          |
-| Time taken to sort data       | 0.00485212s   | 0.0577385s     | 0.730288s       | 10.3186s         | 111.985s          |
-| Time taken to divide students | 0.000438091s  | 0.00416862s    | 0.0714406s      | 0.814364s        | 8.21541s          |
+#### Creates a new object as a copy of an existing object.
 
-#### Deque
+    Studentas::Studentas(const Studentas &copy)
+    : vardas(copy.vardas), pavarde(copy.pavarde), nd_rezultatai(copy.nd_rezultatai),egzaminas(copy.egzaminas) {}
 
-| Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
-| ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Time taken to read data       | 0.013962s     | 0.129581s      | 1.28972s        | 12.8755s         | 138.635s          |
-| Time taken to sort data       | 0.007978s     | 0.187784s      | 0.72893s        | 7.6598s          | 78.6523s          |
-| Time taken to divide students | 0.000998s     | 0.009481s      | 0.100241s       | 1.0698s          | 10.5069s          |
+### Copy Assignment Operator
 
-**Comments:**
+#### Assigns the state of one object to another existing object.
 
-List strategy outperforms both Vector and Deque in terms of time taken to read data for all student sizes. However, when it comes to sorting data and dividing students, the Vector strategy seems to perform better compared to List and Deque, especially as the number of students increases.
+    Studentas& Studentas::operator=(const Studentas& copy)
+    {
+        if(this !=&copy)
+        {
+            vardas = copy.vardas;
+            pavarde = copy.pavarde;
+            nd_rezultatai = copy.nd_rezultatai;
+            egzaminas = copy.egzaminas;
+        }
+        return *this;
+    }
 
-The decision on which strategy is better depends on the specific requirements and constraints of the application. For instance:
+### Move Constructor
 
-- **Vector**: Efficient for tasks that require frequent access to elements and relatively fewer insertions and deletions.
-- **List**: Suitable for scenarios where frequent insertions and deletions are required, as it offers constant-time insertion and deletion operations.
-- **Deque**: A compromise between Vector and List, offering efficient random access to elements and constant-time insertion and deletion at both ends.
+#### Transfers resources from a temporary object to a new object.
 
-Consider the specific operations and performance requirements of your application to determine the most appropriate container strategy.
+        Studentas& Studentas::operator=(Studentas&& copy) noexcept {
+            if (this!= &copy) {
+                // Swap the members of the current object with the members of the other object
+                std::swap(vardas, copy.vardas);
+                std::swap(pavarde, copy.pavarde);
+                std::swap(nd_rezultatai, copy.nd_rezultatai);
+                std::swap(egzaminas, copy.egzaminas);
+            }
+            return *this;
+        }
+
+### Move Assignment Operator
+
+#### Transfers resources from one object to another existing object.
+
+        Studentas& Studentas::operator=(Studentas&& copy) noexcept {
+            if (this!= &copy) {
+                // Swap the members of the current object with the members of the other object
+                std::swap(vardas, copy.vardas);
+                std::swap(pavarde, copy.pavarde);
+                std::swap(nd_rezultatai, copy.nd_rezultatai);
+                std::swap(egzaminas, copy.egzaminas);
+            }
+            return *this;
+        }
+
+## Overloaded Methods
+
+The `Studentas` class overloads the input and output operators (`operator<<` and `operator>>`) to provide serialization and deserialization capabilities. These overloaded methods allow objects of the `Studentas` class to be written to an output stream (e.g., `std::cout` or a file) and read from an input stream (e.g., `std::cin` or a file).
+
+### Output Operator (`operator<<`)
+
+#### The output operator `operator<<` is overloaded to serialize a `Studentas` object to an output stream. It prints the `vardas`, `pavarde`, `egzaminas`, and `nd_rezultatai` member variables to the output stream.
+
+    std::ostream& operator<<(std::ostream& output, const Studentas &student) {
+        output << student.vardas << " " << student.pavarde << " " << student.egzaminas << " ";
+        for (int pazymys : student.nd_rezultatai) {
+            output << std::to_string(pazymys) << " "; // Pries printinant pakeist int'a i string'a
+        }
+        return output;
+    }
+
+### Input Operator (`operator>>`)
+
+#### The input operator `operator>>` is overloaded to deserialize a `Studentas` object from an input stream. It reads `vardas`, `pavarde`, `egzaminas`, and `nd_rezultatai` from the input stream and constructs a `Studentas` object accordingly.
+
+    std::istream& operator>>(std::istream& input, Studentas &student) {
+        input >> student.vardas >> student.pavarde;
+        input >> student.egzaminas;
+        student.nd_rezultatai.clear();
+        int pazymys;
+        while (input >> pazymys) {
+            student.nd_rezultatai.push_back(pazymys);
+        }
+        return input;
+    }
 
 # Running a Makefile for C/C++ Projects
 
@@ -146,3 +174,10 @@ This guide will walk you through the process of running a Makefile for compiling
 - Run the program by typing `./run` on macOS or `run.exe` on Windows, and press Enter.
 
 Congratulations! You've successfully compiled and executed your C/C++ program using a Makefile. If you encounter any errors during compilation, check your Makefile and source code for issues.
+
+### 6\. How To Run Code With Flags
+
+- Type `make optimize`
+- Type `./run_o1 `
+  `./run_o2`
+  `./run_o3`
