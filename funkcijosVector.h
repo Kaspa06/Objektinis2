@@ -11,4 +11,3 @@ void rusiuotStudentusVector2(const std::string& failoVardas);
 void rusiuotStudentusVector3(const std::string &failoVardas);
 
 #endif // FUNKCIJOSVECTOR_H
-
