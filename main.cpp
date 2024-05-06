@@ -1,146 +1,63 @@
-#include "studentas.h"
-#include <algorithm>
-#include <cstdlib> 
-#include <fstream>
-#include <iostream>
+#ifndef STUDENTAS_H
+#define STUDENTAS_H
 
-// Constructor
-Studentas::Studentas() : egzaminas(0) {}
+#include <string>
+#include <vector>
 
-// Constructor
-Studentas::Studentas(const std::string& vardas, const std::string& pavarde)
-    : vardas(vardas), pavarde(pavarde), egzaminas(0) {}
+class Zmogus {
+public:
+    virtual void setVardas(std::string vardas) = 0;
+    virtual std::string getVardas() const = 0;
+    virtual void setPavarde(std::string pavarde) = 0;
+    virtual std::string getPavarde() const = 0;
+    virtual ~Zmogus() = default;
 
-// Destructor
-Studentas::~Studentas() {
-    nd_rezultatai.clear();
-    vardas.clear();
-    pavarde.clear();
-    egzaminas = 0;
-}
+};
 
-//Copying constructor
-Studentas::Studentas(const Studentas &copy)
-: vardas(copy.vardas), pavarde(copy.pavarde), nd_rezultatai(copy.nd_rezultatai), egzaminas(copy.egzaminas) {}
+class Studentas : public Zmogus {
+private:
+    std::string vardas;
+    std::string pavarde;
+    std::vector<int> nd_rezultatai;
+    int egzaminas;
+public:
+    // Constructor
+    Studentas();
+    // Constructor with parameters
+    Studentas(const std::string &vardas, const std::string &pavarde);
+    //Destructor
+    ~Studentas();
+    // Copying constructor
+    Studentas(const Studentas &copy);
 
-//Copy assignment
-Studentas& Studentas::operator=(const Studentas& copy) 
-{
-    if(this !=&copy)
-    {
-        vardas = copy.vardas;
-        pavarde = copy.pavarde;
-        nd_rezultatai = copy.nd_rezultatai;
-        egzaminas = copy.egzaminas;
-    }
-    return *this;
-}
+    // Copy assignment
+    Studentas& operator=(const Studentas& copy);
 
- // Move assignment operator
-    Studentas& Studentas::operator=(Studentas&& copy) noexcept {
-        if (this!= &copy) {
-            // Swap the members of the current object with the members of the other object
-            std::swap(vardas, copy.vardas);
-            std::swap(pavarde, copy.pavarde);
-            std::swap(nd_rezultatai, copy.nd_rezultatai);
-            std::swap(egzaminas, copy.egzaminas);
-        }
-        return *this;
-    }
+    // Move assignment operator
+    Studentas& operator=(Studentas&& copy) noexcept;
 
-// Public member functions
-void Studentas::setVardas(std::string vardas) {
-    this-> vardas = vardas;
-}
-std::string Studentas::getVardas() const {
-    return vardas;
-}
+    void setVardas(std::string vardas);
+    std::string getVardas() const;
 
-void Studentas::setPavarde(std::string pavarde) {
-    this -> pavarde = pavarde;
-}
+    void setPavarde(std::string pavarde);
+    std::string getPavarde() const;
 
-std::string Studentas::getPavarde() const {
-    return pavarde;
-}
+    void setNamuDarbai(const std::vector<int> &nd);
+    std::vector<int> getNamuDarbai() const;
 
-void Studentas::setNamuDarbai(const std::vector<int>& nd) {
-    nd_rezultatai = nd;
-}
+    void addNamuDarbai(int pazymys);
 
-std::vector<int> Studentas::getNamuDarbai() const {
-    return nd_rezultatai;
-}
+    void setEgzaminas(int egzaminas);
+    int getEgzaminas() const;
 
-void Studentas::setEgzaminas(int egzaminas) {
-    this->egzaminas = egzaminas;
-}
+    double calcVidurkis() const;
+    double calcMediana() const;
+    double calcGalutinis(bool useVidurkis) const;
+    void randomND();
+    void randomStudentai();
 
-void Studentas::addNamuDarbai(int pazymys)
-{
-    nd_rezultatai.push_back(pazymys);
-}
+    friend std::ostream &operator<<(std::ostream &output, const Studentas &student);
+    friend std::istream &operator>>(std::istream &input, Studentas &student);
+};
 
-int Studentas::getEgzaminas() const {
-    return egzaminas;
-}
-
-double Studentas::calcVidurkis() const {
-    double suma = 0.0;
-    for (int pazymys : nd_rezultatai) {
-        suma += pazymys;
-    }
-    return nd_rezultatai.empty() ? 0.0 : suma / nd_rezultatai.size();
-}
-
-double Studentas::calcMediana() const {
-    if (nd_rezultatai.empty()) return 0.0;
-    std::vector<int> tempNamuDarbai = nd_rezultatai;
-    std::sort(tempNamuDarbai.begin(), tempNamuDarbai.end());
-    int dydis = tempNamuDarbai.size();
-    return (dydis % 2 == 0) ? (tempNamuDarbai[dydis / 2 - 1] + tempNamuDarbai[dydis / 2]) / 2.0 : tempNamuDarbai[dydis / 2];
-}
-
-double Studentas::calcGalutinis(bool useVidurkis) const {
-    double galutinis = useVidurkis ? (0.4 * calcVidurkis() + 0.6 * egzaminas) : (0.4 * calcMediana() + 0.6 * egzaminas);
-    return galutinis;
-}
-
-void Studentas::randomND() {
-    nd_rezultatai.resize(rand() % 10 + 1);
-    for (int& pazymys : nd_rezultatai) {
-        pazymys = rand() % 10 + 1;
-    }
-    egzaminas = rand() % 10 + 1;
-}
-
-void Studentas::randomStudentai() {
-    const char* vardai[] = {"Jonas", "Petras", "Antanas", "Juozas", "Kazimieras"};
-    const char* pavardes[] = {"Jonaitis", "Petraitis", "Antanaitis", "Juozaitis", "Kazimieraitis"};
-    int vardasIndex = rand() % 6;
-    int pavardeIndex = rand() % 6;
-    vardas = vardai[vardasIndex];
-    pavarde = pavardes[pavardeIndex];
-    randomND();
-}
-
-// Output Operator (Serialization)
-std::ostream& operator<<(std::ostream& output, const Studentas &student) {
-    output << student.vardas << " " << student.pavarde << " " << student.egzaminas << " ";
-    for (int pazymys : student.nd_rezultatai) {
-        output << std::to_string(pazymys) << " "; // Pries printinant pakeist int'a i string'a
-    }
-    return output;
-}
-
-// Input Operator (Deserialization)
-std::istream& operator>>(std::istream& input, Studentas &student) {
-    input >> student.vardas >> student.pavarde;
-    input >> student.egzaminas;
-    student.nd_rezultatai.clear();
-    int pazymys;
-    while (input >> pazymys) {
-        student.nd_rezultatai.push_back(pazymys);
-    }
-    return input;
-}
+#endif // STUDENTAS_H
