@@ -23,6 +23,20 @@
 | Time taken to sort data       | 0.000952000s  | 0.048868000s   | 0.245346400s    | 2.10981s         | 22.098095s        |
 | Time taken to divide students | 0.000000000s  | 0.002992000s   | 0.026930000s    | 0.34083900s      | 3.61350350s       |
 
+# Abstract Class "Zmogus"
+
+#### An abstract class in C++ is a class that contains at least one pure virtual function. A pure virtual function is a virtual function for which we provide only the declaration in the base class, without providing any implementation. Abstract classes are designed to be used as base classes, and they cannot be instantiated directly. Instead, they are intended to serve as interfaces that define a common set of methods that derived classes must implement.
+
+    class Zmogus {
+    public:
+        virtual void setVardas(std::string vardas) = 0;
+        virtual std::string getVardas() const = 0;
+        virtual void setPavarde(std::string pavarde) = 0;
+        virtual std::string getPavarde() const = 0;
+        virtual ~Zmogus() = default;
+
+    };
+
 # Rule of Five and Overloaded Methods
 
 ## Rule of Five
