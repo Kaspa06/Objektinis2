@@ -230,6 +230,55 @@ You should see the version information displayed if Doxygen has been installed s
 
 Now that you've installed Doxygen, you can start generating documentation for your projects!
 
+# Using Overleaf.com for LaTeX
+
+## What is Overleaf?
+
+Overleaf is an online LaTeX editor that allows you to create, edit, and collaborate on LaTeX documents in real-time. It provides a user-friendly interface and powerful LaTeX tools, making it a popular choice for academics, researchers, and students.
+
+## Getting Started:
+
+### 1\. Create an Account:
+
+If you haven't already, sign up for an account on Overleaf.com.
+
+### 2\. Create a New Project:
+
+Once logged in, click on the "New Project" button to create a new LaTeX project.
+
+### 3\. Choose a Template (Optional):
+
+Overleaf offers a variety of templates for different types of documents, such as research papers, presentations, and CVs. You can choose a template to start with or create a blank document.
+
+### 4\. Writing and Editing:
+
+Use the LaTeX editor provided by Overleaf to write and edit your document. You can type directly into the editor or upload existing LaTeX files.
+
+### 5\. Collaboration:
+
+Overleaf allows you to collaborate with others on your LaTeX documents in real-time. You can share your project with collaborators and work together on the same document simultaneously.
+
+### 6\. Compiling:
+
+Overleaf automatically compiles your LaTeX document as you type, so you can see the output in real-time. You can also manually compile your document by clicking the "Recompile" button.
+
+### 7\. Downloading:
+
+Once you're satisfied with your document, you can download it in various formats, such as PDF, LaTeX, and Word.
+
+## Additional Features:
+
+- **Rich Text Editor**: Overleaf provides a rich text editor mode for users who are not familiar with LaTeX syntax.
+- **Version History**: Overleaf keeps track of the version history of your documents, allowing you to revert to previous versions if needed.
+- **Publishing**: You can publish your documents directly from Overleaf to various journals and preprint repositories.
+
+## Resources:
+
+- Overleaf Documentation
+- Overleaf Templates
+
+With Overleaf, you can easily create professional-quality LaTeX documents without the need for complex software installations. Start using Overleaf today to streamline your LaTeX workflow!
+
 # Running a Makefile for C/C++ Projects
 
 This guide will walk you through the process of running a Makefile for compiling and executing C/C++ programs on both macOS and Windows. If this tutorial does not work for you, try these solutions [Makefile](https://stackoverflow.com/questions/32127524/how-to-install-and-use-make-in-windows).
