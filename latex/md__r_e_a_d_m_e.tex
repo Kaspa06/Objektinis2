@@ -1,0 +1,205 @@
+\chapter{Specs}
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{Specs@{Specs}}
+\label{md__r_e_a_d_m_e_autotoc_md0}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md0}%
+\begin{DoxyVerb}CPU: AMD Ryzen 5 5600U with Radeon Graphics 2.30 GHz
+RAM: 16.0 GB (15.3 GB usable)
+SSD: WDC PC SN530 512Gb
+GPU: Integrated with CPU
+\end{DoxyVerb}
+ \hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{\texorpdfstring{Structures vs Classes}{Structures vs Classes}}\label{md__r_e_a_d_m_e_autotoc_md1}
+\label{md__r_e_a_d_m_e_autotoc_md2}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md2}%
+ \doxysubparagraph*{Data from 1.\+1}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{6}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Task   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1000 students   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10000 students   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100000 students   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1000000 students   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10000000 students    }\\\cline{1-6}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Task   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1000 students   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10000 students   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100000 students   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1000000 students   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10000000 students    }\\\cline{1-6}
+\endhead
+Time taken to read data   &0.\+006987000s   &0.\+064826000s   &0.\+6326890s   &6.\+262007000s   &64.\+8594s    \\\cline{1-6}
+Time taken to sort data   &0.\+000997000s   &0.\+042884000s   &0.\+2950890s   &3.\+173142000s   &30.\+564123s    \\\cline{1-6}
+Time taken to divide students   &0.\+000997000s   &0.\+002991000s   &0.\+0354300s   &0.\+257002000s   &2.\+654561s   \\\cline{1-6}
+\end{longtabu}
+
+
+\label{md__r_e_a_d_m_e_autotoc_md3}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md3}%
+ \doxysubparagraph*{Data with "{}\+Rule of Five"{}}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{6}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Task   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1000 students   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10000 students   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100000 students   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1000000 students   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10000000 students    }\\\cline{1-6}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Task   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1000 students   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10000 students   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100000 students   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1000000 students   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10000000 students    }\\\cline{1-6}
+\endhead
+Time taken to read data   &0.\+006981000s   &0.\+063828000s   &0.\+628348000s   &6.\+200408000s   &64.\+8594s    \\\cline{1-6}
+Time taken to sort data   &0.\+000952000s   &0.\+048868000s   &0.\+245346400s   &2.\+10981s   &22.\+098095s    \\\cline{1-6}
+Time taken to divide students   &0.\+000000000s   &0.\+002992000s   &0.\+026930000s   &0.\+34083900s   &3.\+61350350s   \\\cline{1-6}
+\end{longtabu}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysection{\texorpdfstring{Abstract Class "{}\+Zmogus"{}}{Abstract Class "{}\+Zmogus"{}}}\label{md__r_e_a_d_m_e_autotoc_md4}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxyparagraph{\texorpdfstring{An abstract class in C++ is a class that contains at least one pure virtual function. A pure virtual function is a virtual function for which we provide only the declaration in the base class, without providing any implementation. Abstract classes are designed to be used as base classes, and they cannot be instantiated directly. Instead, they are intended to serve as interfaces that define a common set of methods that derived classes must implement.}{An abstract class in C++ is a class that contains at least one pure virtual function. A pure virtual function is a virtual function for which we provide only the declaration in the base class, without providing any implementation. Abstract classes are designed to be used as base classes, and they cannot be instantiated directly. Instead, they are intended to serve as interfaces that define a common set of methods that derived classes must implement.}}\label{md__r_e_a_d_m_e_autotoc_md5}
+\begin{DoxyVerb}class Zmogus {
+public:
+    virtual void setVardas(std::string vardas) = 0;
+    virtual std::string getVardas() const = 0;
+    virtual void setPavarde(std::string pavarde) = 0;
+    virtual std::string getPavarde() const = 0;
+    virtual ~Zmogus() = default;
+
+};
+\end{DoxyVerb}
+ \hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysubsubsection{\texorpdfstring{The key characteristics of an abstract class are\+:}{The key characteristics of an abstract class are\+:}}\label{md__r_e_a_d_m_e_autotoc_md6}
+
+\begin{DoxyItemize}
+\item Contains Pure Virtual Functions\+: An abstract class contains at least one pure virtual function, which is declared with the virtual keyword and assigned the value 0 as its implementation.
+\item Cannot be Instantiated\+: Since abstract classes have at least one pure virtual function without an implementation, objects of abstract classes cannot be created directly. Attempting to create an instance of an abstract class will result in a compilation error.
+\item Used as Base Classes\+: Abstract classes are meant to be used as base classes. Derived classes inherit from abstract classes and provide concrete implementations for all the pure virtual functions defined in the abstract base class.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md7}{}\doxysection{\texorpdfstring{Rule of Five and Overloaded Methods}{Rule of Five and Overloaded Methods}}\label{md__r_e_a_d_m_e_autotoc_md7}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md8}{}\doxysubsection{\texorpdfstring{Rule of Five}{Rule of Five}}\label{md__r_e_a_d_m_e_autotoc_md8}
+In C++, the Rule of Five refers to a set of guidelines concerning resource management for classes that manage dynamic memory allocation or external resources. The Rule of Five consists of five special member functions that need to be defined or explicitly disabled if one of them is used\+:\hypertarget{md__r_e_a_d_m_e_autotoc_md9}{}\doxysubsubsection{\texorpdfstring{Destructor}{Destructor}}\label{md__r_e_a_d_m_e_autotoc_md9}
+\label{md__r_e_a_d_m_e_autotoc_md10}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md10}%
+ \doxysubparagraph*{Responsible for releasing resources acquired by the object.}
+
+\begin{DoxyVerb}Studentas::~Studentas() {
+nd_rezultatai.clear();
+vardas.clear();
+pavarde.clear();
+egzaminas = 0;
+\end{DoxyVerb}
+ \}\hypertarget{md__r_e_a_d_m_e_autotoc_md11}{}\doxysubsubsection{\texorpdfstring{Copy Constructor}{Copy Constructor}}\label{md__r_e_a_d_m_e_autotoc_md11}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md12}{}\doxyparagraph{\texorpdfstring{Creates a new object as a copy of an existing object.}{Creates a new object as a copy of an existing object.}}\label{md__r_e_a_d_m_e_autotoc_md12}
+\begin{DoxyVerb}Studentas::Studentas(const Studentas &copy)
+: vardas(copy.vardas), pavarde(copy.pavarde), nd_rezultatai(copy.nd_rezultatai),egzaminas(copy.egzaminas) {}
+\end{DoxyVerb}
+ \hypertarget{md__r_e_a_d_m_e_autotoc_md13}{}\doxysubsubsection{\texorpdfstring{Copy Assignment Operator}{Copy Assignment Operator}}\label{md__r_e_a_d_m_e_autotoc_md13}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md14}{}\doxyparagraph{\texorpdfstring{Assigns the state of one object to another existing object.}{Assigns the state of one object to another existing object.}}\label{md__r_e_a_d_m_e_autotoc_md14}
+\begin{DoxyVerb}Studentas& Studentas::operator=(const Studentas& copy)
+{
+    if(this !=&copy)
+    {
+        vardas = copy.vardas;
+        pavarde = copy.pavarde;
+        nd_rezultatai = copy.nd_rezultatai;
+        egzaminas = copy.egzaminas;
+    }
+    return *this;
+}
+\end{DoxyVerb}
+ \hypertarget{md__r_e_a_d_m_e_autotoc_md15}{}\doxysubsubsection{\texorpdfstring{Move Constructor}{Move Constructor}}\label{md__r_e_a_d_m_e_autotoc_md15}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md16}{}\doxyparagraph{\texorpdfstring{Transfers resources from a temporary object to a new object.}{Transfers resources from a temporary object to a new object.}}\label{md__r_e_a_d_m_e_autotoc_md16}
+\begin{DoxyVerb}    Studentas& Studentas::operator=(Studentas&& copy) noexcept {
+        if (this!= &copy) {
+            // Swap the members of the current object with the members of the other object
+            std::swap(vardas, copy.vardas);
+            std::swap(pavarde, copy.pavarde);
+            std::swap(nd_rezultatai, copy.nd_rezultatai);
+            std::swap(egzaminas, copy.egzaminas);
+        }
+        return *this;
+    }
+\end{DoxyVerb}
+ \hypertarget{md__r_e_a_d_m_e_autotoc_md17}{}\doxysubsubsection{\texorpdfstring{Move Assignment Operator}{Move Assignment Operator}}\label{md__r_e_a_d_m_e_autotoc_md17}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md18}{}\doxyparagraph{\texorpdfstring{Transfers resources from one object to another existing object.}{Transfers resources from one object to another existing object.}}\label{md__r_e_a_d_m_e_autotoc_md18}
+\begin{DoxyVerb}    Studentas& Studentas::operator=(Studentas&& copy) noexcept {
+        if (this!= &copy) {
+            // Swap the members of the current object with the members of the other object
+            std::swap(vardas, copy.vardas);
+            std::swap(pavarde, copy.pavarde);
+            std::swap(nd_rezultatai, copy.nd_rezultatai);
+            std::swap(egzaminas, copy.egzaminas);
+        }
+        return *this;
+    }
+\end{DoxyVerb}
+ \hypertarget{md__r_e_a_d_m_e_autotoc_md19}{}\doxysubsection{\texorpdfstring{Overloaded Methods}{Overloaded Methods}}\label{md__r_e_a_d_m_e_autotoc_md19}
+The {\ttfamily \doxylink{class_studentas}{Studentas}} class overloads the input and output operators ({\ttfamily operator\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}} and {\ttfamily operator\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}) to provide serialization and deserialization capabilities. These overloaded methods allow objects of the {\ttfamily \doxylink{class_studentas}{Studentas}} class to be written to an output stream (e.\+g., {\ttfamily std\+::cout} or a file) and read from an input stream (e.\+g., {\ttfamily std\+::cin} or a file).\hypertarget{md__r_e_a_d_m_e_autotoc_md20}{}\doxysubsubsection{\texorpdfstring{Output Operator ({\ttfamily operator\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}})}{Output Operator ({\ttfamily operator\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}})}}\label{md__r_e_a_d_m_e_autotoc_md20}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md21}{}\doxyparagraph{\texorpdfstring{The output operator {\ttfamily operator\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}} is overloaded to serialize a {\ttfamily Studentas} object to an output stream. It prints the {\ttfamily vardas}, {\ttfamily pavarde}, {\ttfamily egzaminas}, and {\ttfamily nd\+\_\+rezultatai} member variables to the output stream.}{The output operator {\ttfamily operator\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}} is overloaded to serialize a {\ttfamily Studentas} object to an output stream. It prints the {\ttfamily vardas}, {\ttfamily pavarde}, {\ttfamily egzaminas}, and {\ttfamily nd\+\_\+rezultatai} member variables to the output stream.}}\label{md__r_e_a_d_m_e_autotoc_md21}
+\begin{DoxyVerb}std::ostream& operator<<(std::ostream& output, const Studentas &student) {
+    output << student.vardas << " " << student.pavarde << " " << student.egzaminas << " ";
+    for (int pazymys : student.nd_rezultatai) {
+        output << std::to_string(pazymys) << " "; // Pries printinant pakeist int'a i string'a
+    }
+    return output;
+}
+\end{DoxyVerb}
+ \hypertarget{md__r_e_a_d_m_e_autotoc_md22}{}\doxysubsubsection{\texorpdfstring{Input Operator ({\ttfamily operator\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}})}{Input Operator ({\ttfamily operator\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}})}}\label{md__r_e_a_d_m_e_autotoc_md22}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md23}{}\doxyparagraph{\texorpdfstring{The input operator {\ttfamily operator\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}} is overloaded to deserialize a {\ttfamily Studentas} object from an input stream. It reads {\ttfamily vardas}, {\ttfamily pavarde}, {\ttfamily egzaminas}, and {\ttfamily nd\+\_\+rezultatai} from the input stream and constructs a {\ttfamily Studentas} object accordingly.}{The input operator {\ttfamily operator\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}} is overloaded to deserialize a {\ttfamily Studentas} object from an input stream. It reads {\ttfamily vardas}, {\ttfamily pavarde}, {\ttfamily egzaminas}, and {\ttfamily nd\+\_\+rezultatai} from the input stream and constructs a {\ttfamily Studentas} object accordingly.}}\label{md__r_e_a_d_m_e_autotoc_md23}
+\begin{DoxyVerb}std::istream& operator>>(std::istream& input, Studentas &student) {
+    input >> student.vardas >> student.pavarde;
+    input >> student.egzaminas;
+    student.nd_rezultatai.clear();
+    int pazymys;
+    while (input >> pazymys) {
+        student.nd_rezultatai.push_back(pazymys);
+    }
+    return input;
+}
+\end{DoxyVerb}
+ \hypertarget{md__r_e_a_d_m_e_autotoc_md24}{}\doxysection{\texorpdfstring{Running a Makefile for C/\+C++ Projects}{Running a Makefile for C/\+C++ Projects}}\label{md__r_e_a_d_m_e_autotoc_md24}
+This guide will walk you through the process of running a Makefile for compiling and executing C/\+C++ programs on both mac\+OS and Windows. If this tutorial does not work for you, try these solutions \href{https://stackoverflow.com/questions/32127524/how-to-install-and-use-make-in-windows}{\texttt{ Makefile}}.\hypertarget{md__r_e_a_d_m_e_autotoc_md25}{}\doxysubsection{\texorpdfstring{Prerequisites}{Prerequisites}}\label{md__r_e_a_d_m_e_autotoc_md25}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Make Installation\+:}}
+\begin{DoxyItemize}
+\item mac\+OS\+: Make is usually pre-\/installed. You can verify by opening a terminal and typing {\ttfamily make -\/v}.
+\item Windows\+: Install Make using a package manager like \href{https://chocolatey.org/}{\texttt{ Chocolatey}}. Run {\ttfamily choco install make} in Power\+Shell or Command Prompt.
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item {\bfseries{C/\+C++ Compiler\+:}}
+\begin{DoxyItemize}
+\item Ensure you have a C/\+C++ compiler installed. On mac\+OS, Clang is typically pre-\/installed. On Windows, you can use Min\+GW or Cygwin.
+\end{DoxyItemize}
+\item {\bfseries{Text Editor or IDE\+:}}
+\begin{DoxyItemize}
+\item Use a text editor or IDE to write your C/\+C++ code and Makefile. Popular choices include Visual Studio Code, Sublime Text, Atom, etc.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md27}{}\doxysubsubsection{\texorpdfstring{1. Write Your Code}{1. Write Your Code}}\label{md__r_e_a_d_m_e_autotoc_md27}
+
+\begin{DoxyItemize}
+\item Create your C/\+C++ code in one or more {\ttfamily .cpp} or {\ttfamily .c} files.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md28}{}\doxysubsubsection{\texorpdfstring{2. Write Makefile}{2. Write Makefile}}\label{md__r_e_a_d_m_e_autotoc_md28}
+
+\begin{DoxyItemize}
+\item Create a file named {\ttfamily Makefile} (without extension) in the same directory as your source code.
+\item Open {\ttfamily Makefile} in a text editor and define build rules.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md29}{}\doxysubsubsection{\texorpdfstring{3. Open Terminal/\+Command Prompt}{3. Open Terminal/\+Command Prompt}}\label{md__r_e_a_d_m_e_autotoc_md29}
+
+\begin{DoxyItemize}
+\item mac\+OS\+: Open Terminal.
+\item Windows\+: Open Command Prompt or Power\+Shell.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md30}{}\doxysubsubsection{\texorpdfstring{4. Navigate to Project Directory}{4. Navigate to Project Directory}}\label{md__r_e_a_d_m_e_autotoc_md30}
+
+\begin{DoxyItemize}
+\item Use {\ttfamily cd} command to navigate to the directory containing your code and Makefile.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md31}{}\doxysubsubsection{\texorpdfstring{5. Run Make}{5. Run Make}}\label{md__r_e_a_d_m_e_autotoc_md31}
+
+\begin{DoxyItemize}
+\item Type {\ttfamily make} and press Enter. This executes the default target ({\ttfamily all}) in the Makefile.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md32}{}\doxysubsubsection{\texorpdfstring{6. Run Your Program}{6. Run Your Program}}\label{md__r_e_a_d_m_e_autotoc_md32}
+
+\begin{DoxyItemize}
+\item After successful build, an executable file (e.\+g., {\ttfamily run} on mac\+OS or {\ttfamily run.\+exe} on Windows) will be generated in the same directory.
+\item Run the program by typing {\ttfamily ./run} on mac\+OS or {\ttfamily run.\+exe} on Windows, and press Enter.
+\end{DoxyItemize}
+
+Congratulations! You\textquotesingle{}ve successfully compiled and executed your C/\+C++ program using a Makefile. If you encounter any errors during compilation, check your Makefile and source code for issues.\hypertarget{md__r_e_a_d_m_e_autotoc_md33}{}\doxysubsubsection{\texorpdfstring{6. How To Run Code With Flags}{6. How To Run Code With Flags}}\label{md__r_e_a_d_m_e_autotoc_md33}
+
+\begin{DoxyItemize}
+\item Type {\ttfamily make optimize}
+\item Type {\ttfamily ./run\+\_\+o1} {\ttfamily ./run\+\_\+o2} {\ttfamily ./run\+\_\+o3} 
+\end{DoxyItemize}
