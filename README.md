@@ -7,69 +7,7 @@
 
 # Structures vs Classes
 
-##### Vector data from 1.0 with Structures
-
-| Task                         | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
-| ---------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Skaitymas uztruko:           | 0.015444s     | 0.166344s      | 1.59188s        | 15.4619s         | 165.159s          |
-| Rusiavimas uztruko:          | 0.006081s     | 0.0552494s     | 0.538313s       | 6.18915s         | 60.0473s          |
-| Studentu skirstymas uztruko: | 0.002001s     | 0.00835907s    | 0.0876151s      | 1.10855s         | 11.3426s          |
-
-##### Vector data from current project with Classes
-
-| Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
-| ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Time taken to read data       | 0.009483000s  | 0.092085000s   | 0.891146000s    | 9.9532s          | 103.299s          |
-| Time taken to sort data       | 0.0004988000s | 0.0138054000s  | 0.5996906000s   | 6.36929s         | 64.5623s          |
-| Time taken to divide students | 0.000998000s  | 0.009950000s   | 0.102526000s    | 9.69208s         | 100.9854s         |
-
-### Flag 01
-
-##### Vector data from 1.0 with Structures
-
-| Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
-| ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Time taken to read data       | 0.012954s     | 0.119683s      | 1.16192s        | 11.5372s         | 117.231s          |
-| Time taken to sort data       | 0.001994s     | 0.027924s      | 1.22572s        | 13.6321s         | 16.1335s          |
-| Time taken to divide students | 0.000764175s  | 0.001995s      | 0.021962s       | 0.880787s        | 10.6563s          |
-
-##### Vector data from current project with Classes
-
-| Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
-| ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Time taken to read data       | 0.006981000s  | 0.065823000s   | 0.633815000s    | 6.287439000s     | 61.8652s          |
-| Time taken to sort data       | 0.000998000s  | 0.042885000s   | 0.430234000s    | 4.37760320s      | 44.22984s         |
-| Time taken to divide students | 0.000000000s  | 0.002991000s   | 0.023937000s    | 0.268325000s     | 2.765211s         |
-
-### Flag 02
-
-##### Vector data from 1.0 with Structures
-
-| Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
-| ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Time taken to read data       | 0.012965s     | 0.118711s      | 1.17678s        | 12.5630s         | 120.65483s        |
-| Time taken to sort data       | 0.000981s     | 0.027925s      | 0.280301s       | 3.05608s         | 32.8461s          |
-| Time taken to divide students | 0.000998s     | 0.002991s      | 0.022938s       | 0.36046s         | 5.605401s         |
-
-##### Vector data from current project with Classes
-
-| Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
-| ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Time taken to read data       | 0.007978000s  | 0.063828000s   | 0.640313000s    | 6.2466450s       | 63.642132s        |
-| Time taken to sort data       | 0.000997000s  | 0.042885000s   | 0.21157780s     | 0.56131s         | 7.65231s          |
-| Time taken to divide students | 0.000000000s  | 0.003017000s   | 0.022122000s    | 0.3056012s       | 3.0654s           |
-
-### Flag 03
-
-##### Vector data from 1.0 with Structures
-
-| Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
-| ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
-| Time taken to read data       | 0.0208152s    | 0.133641s      | 1.54981s        | 15.6058s         | 153.042s          |
-| Time taken to sort data       | 0.00485212s   | 0.0577385s     | 0.730288s       | 10.3186s         | 111.985s          |
-| Time taken to divide students | 0.000438091s  | 0.00416862s    | 0.0714406s      | 0.814364s        | 8.21541s          |
-
-##### Vector data from current project with Classes
+##### Data from 1.1
 
 | Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
 | ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
@@ -77,21 +15,135 @@
 | Time taken to sort data       | 0.000997000s  | 0.042884000s   | 0.2950890s      | 3.173142000s     | 30.564123s        |
 | Time taken to divide students | 0.000997000s  | 0.002991000s   | 0.0354300s      | 0.257002000s     | 2.654561s         |
 
-**RUN FILE SIZES**
+##### Data with "Rule of Five"
 
-#### Structures
+| Task                          | 1000 students | 10000 students | 100000 students | 1000000 students | 10000000 students |
+| ----------------------------- | ------------- | -------------- | --------------- | ---------------- | ----------------- |
+| Time taken to read data       | 0.006981000s  | 0.063828000s   | 0.628348000s    | 6.200408000s     | 64.8594s          |
+| Time taken to sort data       | 0.000952000s  | 0.048868000s   | 0.245346400s    | 2.10981s         | 22.098095s        |
+| Time taken to divide students | 0.000000000s  | 0.002992000s   | 0.026930000s    | 0.34083900s      | 3.61350350s       |
 
-- run - 538KB
-- run_O1 - 393KB
-- run_O2 - 397KB
-- run_O3 - 394KB
+# Abstract Class "Zmogus"
 
-#### Classes
+#### An abstract class in C++ is a class that contains at least one pure virtual function. A pure virtual function is a virtual function for which we provide only the declaration in the base class, without providing any implementation. Abstract classes are designed to be used as base classes, and they cannot be instantiated directly. Instead, they are intended to serve as interfaces that define a common set of methods that derived classes must implement.
 
-- run - 568KB
-- run_O1 - 374KB
-- run_O2 - 371KB
-- run_O3 - 411KB
+    class Zmogus {
+    public:
+        virtual void setVardas(std::string vardas) = 0;
+        virtual std::string getVardas() const = 0;
+        virtual void setPavarde(std::string pavarde) = 0;
+        virtual std::string getPavarde() const = 0;
+        virtual ~Zmogus() = default;
+
+    };
+
+### The key characteristics of an abstract class are:
+
+- Contains Pure Virtual Functions: An abstract class contains at least one pure virtual function, which is declared with the virtual keyword and assigned the value 0 as its implementation.
+- Cannot be Instantiated: Since abstract classes have at least one pure virtual function without an implementation, objects of abstract classes cannot be created directly. Attempting to create an instance of an abstract class will result in a compilation error.
+- Used as Base Classes: Abstract classes are meant to be used as base classes. Derived classes inherit from abstract classes and provide concrete implementations for all the pure virtual functions defined in the abstract base class.
+
+# Rule of Five and Overloaded Methods
+
+## Rule of Five
+
+In C++, the Rule of Five refers to a set of guidelines concerning resource management for classes that manage dynamic memory allocation or external resources. The Rule of Five consists of five special member functions that need to be defined or explicitly disabled if one of them is used:
+
+### Destructor
+
+##### Responsible for releasing resources acquired by the object.
+
+    Studentas::~Studentas() {
+    nd_rezultatai.clear();
+    vardas.clear();
+    pavarde.clear();
+    egzaminas = 0;
+
+}
+
+### Copy Constructor
+
+#### Creates a new object as a copy of an existing object.
+
+    Studentas::Studentas(const Studentas &copy)
+    : vardas(copy.vardas), pavarde(copy.pavarde), nd_rezultatai(copy.nd_rezultatai),egzaminas(copy.egzaminas) {}
+
+### Copy Assignment Operator
+
+#### Assigns the state of one object to another existing object.
+
+    Studentas& Studentas::operator=(const Studentas& copy)
+    {
+        if(this !=&copy)
+        {
+            vardas = copy.vardas;
+            pavarde = copy.pavarde;
+            nd_rezultatai = copy.nd_rezultatai;
+            egzaminas = copy.egzaminas;
+        }
+        return *this;
+    }
+
+### Move Constructor
+
+#### Transfers resources from a temporary object to a new object.
+
+        Studentas& Studentas::operator=(Studentas&& copy) noexcept {
+            if (this!= &copy) {
+                // Swap the members of the current object with the members of the other object
+                std::swap(vardas, copy.vardas);
+                std::swap(pavarde, copy.pavarde);
+                std::swap(nd_rezultatai, copy.nd_rezultatai);
+                std::swap(egzaminas, copy.egzaminas);
+            }
+            return *this;
+        }
+
+### Move Assignment Operator
+
+#### Transfers resources from one object to another existing object.
+
+        Studentas& Studentas::operator=(Studentas&& copy) noexcept {
+            if (this!= &copy) {
+                // Swap the members of the current object with the members of the other object
+                std::swap(vardas, copy.vardas);
+                std::swap(pavarde, copy.pavarde);
+                std::swap(nd_rezultatai, copy.nd_rezultatai);
+                std::swap(egzaminas, copy.egzaminas);
+            }
+            return *this;
+        }
+
+## Overloaded Methods
+
+The `Studentas` class overloads the input and output operators (`operator<<` and `operator>>`) to provide serialization and deserialization capabilities. These overloaded methods allow objects of the `Studentas` class to be written to an output stream (e.g., `std::cout` or a file) and read from an input stream (e.g., `std::cin` or a file).
+
+### Output Operator (`operator<<`)
+
+#### The output operator `operator<<` is overloaded to serialize a `Studentas` object to an output stream. It prints the `vardas`, `pavarde`, `egzaminas`, and `nd_rezultatai` member variables to the output stream.
+
+    std::ostream& operator<<(std::ostream& output, const Studentas &student) {
+        output << student.vardas << " " << student.pavarde << " " << student.egzaminas << " ";
+        for (int pazymys : student.nd_rezultatai) {
+            output << std::to_string(pazymys) << " "; // Pries printinant pakeist int'a i string'a
+        }
+        return output;
+    }
+
+### Input Operator (`operator>>`)
+
+#### The input operator `operator>>` is overloaded to deserialize a `Studentas` object from an input stream. It reads `vardas`, `pavarde`, `egzaminas`, and `nd_rezultatai` from the input stream and constructs a `Studentas` object accordingly.
+
+    std::istream& operator>>(std::istream& input, Studentas &student) {
+        input >> student.vardas >> student.pavarde;
+        input >> student.egzaminas;
+        student.nd_rezultatai.clear();
+        int pazymys;
+        while (input >> pazymys) {
+            student.nd_rezultatai.push_back(pazymys);
+        }
+        return input;
+    }
 
 # Running a Makefile for C/C++ Projects
 
