@@ -1,6 +1,8 @@
 #include "studentas.h"
 #include <algorithm>
 #include <cstdlib> 
+#include <fstream>
+#include <iostream>
 
 // Constructor
 Studentas::Studentas() : egzaminas(0) {}
@@ -12,7 +14,39 @@ Studentas::Studentas(const std::string& vardas, const std::string& pavarde)
 // Destructor
 Studentas::~Studentas() {
     nd_rezultatai.clear();
+    vardas.clear();
+    pavarde.clear();
+    egzaminas = 0;
 }
+
+//Copying constructor
+Studentas::Studentas(const Studentas &copy)
+: vardas(copy.vardas), pavarde(copy.pavarde), nd_rezultatai(copy.nd_rezultatai), egzaminas(copy.egzaminas) {}
+
+//Copy assignment
+Studentas& Studentas::operator=(const Studentas& copy) 
+{
+    if(this !=&copy)
+    {
+        vardas = copy.vardas;
+        pavarde = copy.pavarde;
+        nd_rezultatai = copy.nd_rezultatai;
+        egzaminas = copy.egzaminas;
+    }
+    return *this;
+}
+
+ // Move assignment operator
+    Studentas& Studentas::operator=(Studentas&& copy) noexcept {
+        if (this!= &copy) {
+            // Swap the members of the current object with the members of the other object
+            std::swap(vardas, copy.vardas);
+            std::swap(pavarde, copy.pavarde);
+            std::swap(nd_rezultatai, copy.nd_rezultatai);
+            std::swap(egzaminas, copy.egzaminas);
+        }
+        return *this;
+    }
 
 // Public member functions
 void Studentas::setVardas(std::string vardas) {
@@ -88,4 +122,25 @@ void Studentas::randomStudentai() {
     vardas = vardai[vardasIndex];
     pavarde = pavardes[pavardeIndex];
     randomND();
+}
+
+// Output Operator (Serialization)
+std::ostream& operator<<(std::ostream& output, const Studentas &student) {
+    output << student.vardas << " " << student.pavarde << " " << student.egzaminas << " ";
+    for (int pazymys : student.nd_rezultatai) {
+        output << std::to_string(pazymys) << " "; // Pries printinant pakeist int'a i string'a
+    }
+    return output;
+}
+
+// Input Operator (Deserialization)
+std::istream& operator>>(std::istream& input, Studentas &student) {
+    input >> student.vardas >> student.pavarde;
+    input >> student.egzaminas;
+    student.nd_rezultatai.clear();
+    int pazymys;
+    while (input >> pazymys) {
+        student.nd_rezultatai.push_back(pazymys);
+    }
+    return input;
 }
