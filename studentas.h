@@ -4,11 +4,37 @@
 #include <string>
 #include <vector>
 
-class Studentas
-{
+class Zmogus {
 public:
+    virtual void setVardas(std::string vardas) = 0;
+    virtual std::string getVardas() const = 0;
+    virtual void setPavarde(std::string pavarde) = 0;
+    virtual std::string getPavarde() const = 0;
+    virtual ~Zmogus() = default;
+
+};
+
+class Studentas : public Zmogus {
+private:
+    std::string vardas;
+    std::string pavarde;
+    std::vector<int> nd_rezultatai;
+    int egzaminas;
+public:
+    // Constructor
     Studentas();
+    // Constructor with parameters
     Studentas(const std::string &vardas, const std::string &pavarde);
+    //Destructor
+    ~Studentas();
+    // Copying constructor
+    Studentas(const Studentas &copy);
+
+    // Copy assignment
+    Studentas& operator=(const Studentas& copy);
+
+    // Move assignment operator
+    Studentas& operator=(Studentas&& copy) noexcept;
 
     void setVardas(std::string vardas);
     std::string getVardas() const;
@@ -30,13 +56,8 @@ public:
     void randomND();
     void randomStudentai();
 
-    ~Studentas();
-    
-private:
-    std::string vardas;
-    std::string pavarde;
-    std::vector<int> nd_rezultatai;
-    int egzaminas;
+    friend std::ostream &operator<<(std::ostream &output, const Studentas &student);
+    friend std::istream &operator>>(std::istream &input, Studentas &student);
 };
 
 #endif // STUDENTAS_H
