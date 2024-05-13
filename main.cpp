@@ -1,9 +1,8 @@
 #include "containers.h"
-#include "funkcijosDeque.h"
 #include "funkcijosVector.h"
-#include "funkcijosList.h"
 #include "funkcijos.h"
 #include "studentas.h"
+#include "testRules.h"
 #include <iostream>
 #include <vector>
 #include <limits>
@@ -63,6 +62,7 @@ int main()
                       << "4 - Skaityti duomenis is failo" << std::endl
                       << "5 - Pakeisti rusiavimo tipa" << std::endl
                       << "6 - Rusiuoti studentus sugeneruotuose failuose" << std::endl
+                      << "7 - Testuoti The Rule of Five ir >> && << operatorius" << std::endl
                       << "0 - Baigti darba" << std::endl
                       << "Pasirinkite veiksma: ";
             std::cin >> pasirinkimas;
@@ -169,6 +169,23 @@ int main()
             {
                 runApp();
                 break;
+            }
+            case 7:
+            {
+                int test;
+                std::cout<<"Ka norite testuoti?"<<std::endl;
+                std::cout<<"1 - test Rule Of Five"<<std::endl;
+                std::cout<<"2 - test Serialization and Deserialization"<<std::endl;
+                std::cout<<"Pasirinkimas: ";
+                std::cin>>test;
+                if(test == 1)
+                {
+                    testRuleOfFive();
+                }
+                else if(test == 2)
+                {
+                    testSerializationDeserialization();
+                }
             }
 
             case 0:
