@@ -5,6 +5,8 @@
     SSD: WDC PC SN530 512Gb
     GPU: Integrated with CPU
 
+# v1.5
+
 # Structures vs Classes
 
 ##### Data from 1.1
@@ -144,6 +146,89 @@ The `Studentas` class overloads the input and output operators (`operator<<` and
         }
         return input;
     }
+
+# v2.0
+
+# Installing Doxygen
+
+## What is Doxygen?
+
+Doxygen is a documentation generator tool that is used to generate documentation from source code. It supports several programming languages and can generate documentation in various formats, such as HTML, LaTeX, RTF, and more.
+
+## Installation Steps:
+
+### 1\. Download Doxygen:
+
+You can download the latest version of Doxygen from the official website: www.doxygen.nl/download.html.
+
+### 2\. Install on Windows:
+
+#### Using Installer:
+
+- Double-click the downloaded installer file.
+- Follow the on-screen instructions provided by the installer.
+- Once installed, Doxygen should be accessible from the Start menu.
+
+#### Using Zip Archive:
+
+- Extract the downloaded zip archive to a location of your choice.
+- Add the path to the Doxygen executable to your system's PATH environment variable.
+
+### 3\. Install on macOS:
+
+#### Using Homebrew:
+
+If you have Homebrew installed, you can install Doxygen using the following command:
+
+Copy code
+
+`brew install doxygen`
+
+#### Manual Installation:
+
+- Download the macOS version from the official website.
+- Mount the downloaded disk image and drag the Doxygen application to your Applications folder.
+
+### 4\. Install on Linux:
+
+#### Using Package Manager:
+
+- On Debian/Ubuntu:
+
+  arduino
+
+  Copy code
+
+  `sudo apt-get install doxygen`
+
+- On Fedora:
+
+  Copy code
+
+  `sudo dnf install doxygen`
+
+#### Manual Installation:
+
+- Download the Linux version from the official website.
+- Extract the downloaded archive to a location of your choice.
+- Add the path to the Doxygen executable to your system's PATH environment variable.
+
+### 5\. Verify Installation:
+
+To verify that Doxygen has been installed correctly, open a terminal or command prompt and type:
+
+Copy code
+
+`doxygen -v`
+
+You should see the version information displayed if Doxygen has been installed successfully.
+
+## Additional Resources:
+
+- Doxygen Documentation
+- [Doxygen GitHub Repository](https://github.com/doxygen/doxygen)
+
+Now that you've installed Doxygen, you can start generating documentation for your projects!
 
 # Running a Makefile for C/C++ Projects
 
