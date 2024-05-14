@@ -1,7 +1,5 @@
 #include "containers.h"
-#include "funkcijosDeque.h"
 #include "funkcijosVector.h"
-#include "funkcijosList.h"
 #include "funkcijos.h"
 #include "studentas.h"
 #include <iostream>
