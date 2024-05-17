@@ -19,6 +19,9 @@ public:
     // Copy assignment
     Studentas& operator=(const Studentas& copy);
 
+    // Move constructor
+    Studentas(Studentas&& copy) noexcept;
+
     // Move assignment operator
     Studentas& operator=(Studentas&& copy) noexcept;
 
