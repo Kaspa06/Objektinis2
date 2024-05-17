@@ -36,6 +36,14 @@ Studentas& Studentas::operator=(const Studentas& copy)
     return *this;
 }
 
+// Move Constructor
+Studentas::Studentas(Studentas&& copy) noexcept{
+    vardas = std::move(copy.vardas);
+    pavarde = std::move(copy.pavarde);
+    nd_rezultatai = std::move(copy.nd_rezultatai);
+    egzaminas = copy.egzaminas;
+}
+
  // Move assignment operator
     Studentas& Studentas::operator=(Studentas&& copy) noexcept {
         if (this!= &copy) {
